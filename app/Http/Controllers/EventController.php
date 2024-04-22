@@ -12,12 +12,12 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = Event::all();
-        // $data = $request->user()->id(); pegando informações do usuario logado
-        // echo '<pre>';
-        // die(print_r($data));
-        return view('events.index', ['events' => $events]);
+        $search = request('search');
 
+        $event = new Event;
+        $events = $event->search_event_by_name($search);
+
+        return view('events.index', ['events' => $events, 'search' => $search]);
     }
 
     /**

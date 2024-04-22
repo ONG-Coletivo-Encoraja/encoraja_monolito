@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Event;
+use App\Models\Administrator;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -17,8 +17,11 @@ class AdministratorController extends Controller
     }   
     public function index()
     {
-        $users = User::with('permissions')->get();
-        return view('administrator.index', ['users' => $users]);
+        $search = request('search');
+
+        $adm = new Administrator;
+        $users = $adm->search_user_by_name($search);
+        return view('administrator.index', ['users' => $users, 'search' => $search]);
     }
     /**
      * Show the form for creating a new resource.
