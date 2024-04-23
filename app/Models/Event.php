@@ -25,7 +25,7 @@ class Event extends Model
         'interest_area', 
         'price'
     ];
-
+    // relacionamentos
     public function inscriptions(){
         return $this->hasMany(Inscription::class);
     }
@@ -37,5 +37,10 @@ class Event extends Model
     }
     public function relates_events(){
         return $this->hasMany(RelatesEvent::class);
+    }
+
+    // métodos
+    public function event_by_status(String $status){
+        return $this->where('status', $status)->get();
     }
 }

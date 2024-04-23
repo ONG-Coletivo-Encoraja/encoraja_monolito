@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('email', 255)->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('cpf',11)->nullable();
+            $table->string('cpf',15)->nullable();
             $table->date('date_birthday')->nullable();
             $table->boolean('image_term')->default(0);
             $table->boolean('data_term')->default(0);
@@ -26,7 +26,6 @@ return new class extends Migration
             $table->string('course_experience', 255)->nullable();
             $table->string('how_know', 255)->nullable();
             $table->string('expectations', 255)->nullable();
-            $table->foreignId('address_id')->constrained('address')->onUpdate('cascade')->onDelete('cascade')->nullable();
 
             $table->rememberToken();
             $table->timestamps();

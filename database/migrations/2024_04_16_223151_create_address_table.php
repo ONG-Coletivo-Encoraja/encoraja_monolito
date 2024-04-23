@@ -17,7 +17,12 @@ return new class extends Migration
             $table->string('number');
             $table->string('neighbourhood');
             $table->string('city');
-            $table->string('zip_code', 8);
+            $table->string('zip_code', 9);
+            $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade')->nullable(true)->default(null);
+            
+            // análisar necessidade de criar table de endereços dedicados a enventos
+            // $table->foreignId('event_id')->constrained('events')->onUpdate('cascade')->onDelete('cascade')->nullable(true)->default(null);
+
             $table->timestamps();
         });
     }

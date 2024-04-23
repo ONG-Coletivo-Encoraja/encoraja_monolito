@@ -11,4 +11,13 @@ class Administrator extends Model
 
     protected $table = 'users';
 
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+        'cpf',
+        'date_birthday',
+        'image_term',
+        'data_term'
+    ];
 }
