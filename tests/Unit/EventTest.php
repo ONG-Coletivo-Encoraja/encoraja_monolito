@@ -37,38 +37,25 @@ namespace Tests\Unit;
 
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 use App\Models\Event;
 use Database\Factories\EventFactory;
 
 class EventTest extends TestCase
 {
-    use DatabaseTransactions;
+    use RefreshDatabase;
+
 
     public function test_creates_a_new_event()
     {
         // Arrange
-        $eventAttributes = EventFactory::new()->make()->toArray();
+        $eventAttributes = EventFactory::new()->create()->toArray();
 
         // Act
-        $event = Event::all();
-
+        $events = Event::all();
         // Assert
-        // $this->assertInstanceOf(Event::class, $event);
-        // $this->assertEquals($eventAttributes['name'], $event->name);
-        // $this->assertEquals($eventAttributes['description'], $event->description);
-        // $this->assertEquals($eventAttributes['date'], $event->date);
-        // $this->assertEquals($eventAttributes['time'], $event->time);
-        // $this->assertEquals($eventAttributes['modality'], $event->modality);
-        // $this->assertEquals($eventAttributes['status'], $event->status);
-        // $this->assertEquals($eventAttributes['type'], $event->type);
-        // $this->assertEquals($eventAttributes['target_audience'], $event->target_audience);
-        // $this->assertEquals($eventAttributes['vacancies'], $event->vacancies);
-        // $this->assertEquals($eventAttributes['social_vacancies'], $event->social_vacancies);
-        // $this->assertEquals($eventAttributes['regular_vacancies'], $event->regular_vacancies);
-        // $this->assertEquals($eventAttributes['material'], $event->material);
-        // $this->assertEquals($eventAttributes['interest_area'], $event->interest_area);
-        // $this->assertEquals($eventAttributes['price'], $event->price);
+        $this->assertCount(1, $events); // Verifica se há apenas um evento no banco de dados
+        $this->assertEquals($eventAttributes['name'], $events->first()->name); // Verifica o nome do evento, por exemplo
+        // Você pode adicionar mais verificações para os outros atributos do evento aqui
     }
 }
-
