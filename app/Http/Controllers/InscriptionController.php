@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Inscription;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Redirect;
 
 class InscriptionController extends Controller
 {
@@ -21,7 +24,7 @@ class InscriptionController extends Controller
      */
     public function create()
     {
-        //
+        return view('inscriptions.create');
     }
 
     /**
@@ -29,7 +32,13 @@ class InscriptionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            // Defina as regras de validação aqui
+        ]);
+    
+        $inscription = Inscription::create($validatedData);
+    
+        return redirect('/inscriptions')->with('success', 'Inscription created successfully');
     }
 
     /**
@@ -37,8 +46,22 @@ class InscriptionController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $inscription = Inscription::with(['users','events'])->findOrFail($id);
+        return view('inscriptions.show', ['inscription' => $inscription]);    
     }
+    /**
+    * Display the inscriptions of a specific user.
+    */
+    public function showUserInscriptions(string $userId)
+    {
+        $inscriptions = Inscription::whereHas('users', function($query) use ($userId) {
+            $query->where('id', $userId);
+        })->with(['users', 'events'])->get();
+
+        return view('inscriptions.user_inscriptions', ['inscriptions' => $inscriptions]);
+    }
+
+
 
     /**
      * Show the form for editing the specified resource.
@@ -65,6 +88,11 @@ class InscriptionController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        
+        $inscription = Inscription::findOrFail($id);
+    
+        $inscription->delete();
+
+        return redirect('/inscriptions')->with('success', 'Inscription deleted successfully');
     }
 }

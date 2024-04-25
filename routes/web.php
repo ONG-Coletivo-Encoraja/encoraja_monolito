@@ -29,7 +29,7 @@ use Illuminate\Support\Facades\Route;
 //     Route::resource('/adm', AdministratorController::class);
 // });
 
-Route::get('/home-admin', [HomeController::class, 'home_admin']);
+Route::get('/home/{type}', [HomeController::class, 'home']);
 Route::resource('/', HomeController::class);
 
 Route::resource('/events', EventController::class);
@@ -42,15 +42,19 @@ Route::resource('/inscriptions', InscriptionController::class);
 
 // Route::get('/adm/event', [AdministratorController::class, 'event'])->name('adm.event');
 
+//Route::get('/home/{type}', [HomeController::class, 'home']);
+//Route::resource('/', HomeController::class);
 
-Route::get('/home-beneficiary', [HomeController::class, 'home_beneficiary']);
-Route::resource('/', HomeController::class);
+Route::get('/beneficiary/create', [BeneficiaryStudentController::class, 'create']);
+Route::resource('/beneficiary', BeneficiaryStudentController::class);
 
 Route::resource('/events', EventController::class);
 
-Route::resource('/beneficiary', BeneficiaryStudentController::class);
-
 Route::resource('/inscriptions', InscriptionController::class);
+
+Route::get('/beneficiary/home', 'BeneficiaryController@home')->name('beneficiary.home');
+
+
 
 
 

@@ -6,7 +6,11 @@
 <div>
     <h1>Página de Eventos</h1>
     <br>
-    <a href="/events/create">Criar evento</a>
+    @if($userType == 'beneficiario')
+        <a href="/events/inscription">Inscrever Evento</a>
+    @else 
+        <a href="/events/create">Criar evento</a>
+    @endif
     <br>
     <br>
     <table border="1">
@@ -47,16 +51,24 @@
                 <td>{{$event->interest_area}}</td>
                 <td>{{$event->price}}</td>
                 <td>
-                    <form action="/events/{{ $event->id }}/edit" method="GET">
+                    @if($userType == 'beneficiario')
+                        <form action="/events/inscription{{ $event->id }}/edit" method="GET">
                         @csrf
                         @method('GET')
-                        <button class="btn" type="submit">Editar</button>
-                    </form>
-                    <form action="/events/{{ $event->id }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button class="btn" type="submit" onclick="return confirmDelete()">Apagar</button>
-                    </form>
+                        <button class="btn" type="submit">Inscrever</button>
+                    
+                        @else 
+                        <form action="/events/{{ $event->id }}/edit" method="GET">
+                            @csrf
+                            @method('GET')
+                            <button class="btn" type="submit">Editar</button>
+                        </form>
+                        <form action="/events/{{ $event->id }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn" type="submit" onclick="return confirmDelete()">Apagar</button>
+                        </form>
+                    @endif
                 </td>
             </tr>
             @endforeach
