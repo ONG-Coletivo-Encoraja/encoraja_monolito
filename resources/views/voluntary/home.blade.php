@@ -10,10 +10,10 @@
     <a href="">Cadastrar beneficiario</a><br>
 </details>
 <br><br><br>
-<a href="/adm">Visualisar todos os usuários</a>
+<a href="/voluntary">Visualisar todos os usuários</a>
 <br><br><br>
 <a href="/events">Opções de Eventos</a>
 <br><br><br>
-<a href="/inscriptions">Opções de inscrições</a>
+<a href="">Opções de inscrições</a>
 
 @endsection

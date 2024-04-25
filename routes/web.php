@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdministratorController;
-use App\Http\Controllers\EventController;
+use App\Http\Controllers\VoluntaryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InscriptionController;
 use App\Http\Controllers\ProfileController;
@@ -34,6 +34,8 @@ Route::resource('/', HomeController::class);
 Route::resource('/events', EventController::class);
 
 Route::resource('/adm', AdministratorController::class);
+
+Route::resource('/voluntary', VoluntaryController::class);
 
 Route::resource('/inscriptions', InscriptionController::class);
 
