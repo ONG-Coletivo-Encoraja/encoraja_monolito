@@ -1,45 +1,13 @@
 <?php
 
-// use App\Models\Event;
-// use Database\Factories\EventFactory;
-
-// test('example', function () {
-//     expect(true)->toBeTrue();
-// });
-
-// test('creates a new event', function () {
-//     // Arrange
-//     $eventAttributes = EventFactory::new()->make()->toArray();
-
-//     // // Act
-//     $event = Event::factory()->create($eventAttributes);
-
-//     // // Assert
-//     // expect($event)->toBeInstanceOf(Event::class);
-//     // expect($event->name)->toBe($eventAttributes['name']);
-//     // expect($event->description)->toBe($eventAttributes['description']);
-//     // expect($event->date)->toBe($eventAttributes['date']);
-//     // expect($event->time)->toBe($eventAttributes['time']);
-//     // expect($event->modality)->toBe($eventAttributes['modality']);
-//     // expect($event->status)->toBe($eventAttributes['status']);
-//     // expect($event->type)->toBe($eventAttributes['type']);
-//     // expect($event->target_audience)->toBe($eventAttributes['target_audience']);
-//     // expect($event->vacancies)->toBe($eventAttributes['vacancies']);
-//     // expect($event->social_vacancies)->toBe($eventAttributes['social_vacancies']);
-//     // expect($event->regular_vacancies)->toBe($eventAttributes['regular_vacancies']);
-//     // expect($event->material)->toBe($eventAttributes['material']);
-//     // expect($event->interest_area)->toBe($eventAttributes['interest_area']);
-//     // expect($event->price)->toBe($eventAttributes['price']);
-// });
-
-
 namespace Tests\Unit;
 
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Validator;
 use Tests\TestCase;
 use App\Models\Event;
 use Database\Factories\EventFactory;
+
 
 class EventTest extends TestCase
 {
@@ -49,13 +17,93 @@ class EventTest extends TestCase
     public function test_creates_a_new_event()
     {
         // Arrange
-        $eventAttributes = EventFactory::new()->create()->toArray();
+        $eventAttributes = EventFactory::new()->make()->toArray();
 
         // Act
-        $events = Event::all();
+        $event = Event::factory()->create($eventAttributes);
+
         // Assert
-        $this->assertCount(1, $events); // Verifica se há apenas um evento no banco de dados
-        $this->assertEquals($eventAttributes['name'], $events->first()->name); // Verifica o nome do evento, por exemplo
-        // Você pode adicionar mais verificações para os outros atributos do evento aqui
+        $this->assertInstanceOf(Event::class, $event);
+        $this->assertEquals($eventAttributes['name'], $event->name);
+        $this->assertEquals($eventAttributes['description'], $event->description);
+        $this->assertEquals($eventAttributes['date'], $event->date);
+        $this->assertEquals($eventAttributes['time'], $event->time);
+        $this->assertEquals($eventAttributes['modality'], $event->modality);
+        $this->assertEquals($eventAttributes['status'], $event->status);
+        $this->assertEquals($eventAttributes['type'], $event->type);
+        $this->assertEquals($eventAttributes['target_audience'], $event->target_audience);
+        $this->assertEquals($eventAttributes['vacancies'], $event->vacancies);
+        $this->assertEquals($eventAttributes['social_vacancies'], $event->social_vacancies);
+        $this->assertEquals($eventAttributes['regular_vacancies'], $event->regular_vacancies);
+        $this->assertEquals($eventAttributes['material'], $event->material);
+        $this->assertEquals($eventAttributes['interest_area'], $event->interest_area);
+        $this->assertEquals($eventAttributes['price'], $event->price);
+    }
+    public function test_creates_a_new_event_wrong_data()
+    {
+        // Arrange
+        $invalidEvent = Event::factory()->invalid();
+
+        // Act
+        $validator = Validator::make($invalidEvent, [
+            'name' => 'required',
+            'description' => 'required',
+            'date' => 'required|date',
+            'time' => 'required|date_format:H:i:s',
+            'modality' => 'required|in:Presential,Hybrid,Remote',
+            'status' => 'required|in:Active,Inactive,Pending',
+            'type' => 'required|in:Course,Workshop,Lecture',
+            'target_audience' => 'required',
+            'vacancies' => 'required|integer',
+            'social_vacancies' => 'required|integer',
+            'regular_vacancies' => 'required|integer',
+            'material' => 'required',
+            'interest_area' => 'required',
+            'price' => 'required|numeric',
+        ]);
+
+        // Assert
+        $this->assertTrue($validator->fails());
+    }
+    public function test_event_update()
+    {
+        $event = Event::factory()->create();
+
+        $updatedData = [
+            'name' => 'Novo nome do evento',
+            'description' => 'Nova descrição do evento',
+        ];
+
+        $event->update($updatedData);
+
+        $updatedEvent = Event::find($event->id);
+
+        // Assert
+        $this->assertEquals($updatedData['name'], $updatedEvent->name);
+        $this->assertEquals($updatedData['description'], $updatedEvent->description);
+    }
+    public function test_event_delete(){
+        $event = Event::factory()->create();
+
+        $this->assertDatabaseHas('events', ['id' => $event->id]);
+
+        $event->delete();
+
+        $this->assertDatabaseMissing('events', ['id' => $event->id]);
+    }
+    public function test_event_filtering_by_name()
+    {
+        Event::factory()->create(['name' => 'Curso A']);
+        Event::factory()->create(['name' => 'Curso B']);
+        Event::factory()->create(['name' => 'Palestra A']);
+
+        $filter = new Event;
+
+        $filteredEvents = $filter->search_event_by_name('Curso');
+
+        $this->assertCount(2, $filteredEvents);
+        $this->assertTrue($filteredEvents->contains('name', 'Curso A'));
+        $this->assertTrue($filteredEvents->contains('name', 'Curso B'));
+        $this->assertFalse($filteredEvents->contains('name', 'Palestra A')); // Testa se esse evento, que não corresponde a pesquisa, está na lista
     }
 }
