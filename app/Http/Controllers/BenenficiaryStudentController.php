@@ -56,13 +56,21 @@ class BeneficiaryStudentController extends Controller
        
         return redirect()->route('beneficiary.home')->with('name', $request->name);
     }
+ 
     /**
-     * Display the specified resource.
+     * Display the specified event for beneficiaries.
      */
-    public function show(string $id)
+    public function show(Event $event)
     {
-        //
+        // Verifique se o evento está aprovado antes de exibi-lo
+        if ($event->status === 'Active') {
+            return view('beneficiary.event_details', ['event' => $event]);
+        } else {
+            // Redirecione ou exiba uma mensagem de erro informando que o evento não está disponível
+            return "Beneficiário não está inscrito em nenhum evento ainda";
+        }
     }
+
     /**
      * Show the form for editing the specified resource.
      */

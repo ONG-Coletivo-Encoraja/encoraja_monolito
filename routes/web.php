@@ -36,7 +36,12 @@ Route::resource('/events', EventController::class);
 
 Route::resource('/adm', AdministratorController::class);
 
+Route::resource('/beneficiary', BeneficiaryStudentController::class);
+
 Route::resource('/inscriptions', InscriptionController::class);
+
+Route::get('/beneficiary/events/{event}', [BeneficiaryStudentController::class, 'show'])->name('beneficiary.events.show');
+Route::resource('/', BeneficiaryStudentController::class);
 
 //adm
 
@@ -45,14 +50,10 @@ Route::resource('/inscriptions', InscriptionController::class);
 //Route::get('/home/{type}', [HomeController::class, 'home']);
 //Route::resource('/', HomeController::class);
 
-Route::get('/beneficiary/create', [BeneficiaryStudentController::class, 'create']);
-Route::resource('/beneficiary', BeneficiaryStudentController::class);
+//Route::get('/{type}/create', [BeneficiaryStudentController::class, 'create']);
+///Route::get('/{type}/home', 'BeneficiaryController@home')->name('beneficiary.home');
 
-Route::resource('/events', EventController::class);
 
-Route::resource('/inscriptions', InscriptionController::class);
-
-Route::get('/beneficiary/home', 'BeneficiaryController@home')->name('beneficiary.home');
 
 
 
