@@ -29,7 +29,6 @@ use Illuminate\Support\Facades\Route;
 //     Route::resource('/adm', AdministratorController::class);
 // });
 
-Route::get('/beneficiary/events_details', [BeneficiaryStudentController::class, 'show_events']);
 Route::get('/home/{type}', [HomeController::class, 'home']);
 Route::get('/inscriptions/{type_user}', [InscriptionController::class, 'index']);
 Route::resource('/', HomeController::class);
@@ -41,6 +40,9 @@ Route::resource('/adm', AdministratorController::class);
 Route::resource('/beneficiary', BeneficiaryStudentController::class);
 
 Route::resource('/inscriptions', InscriptionController::class);
+
+Route::get('/beneficiary/events_details', [BeneficiaryStudentController::class, 'show_events']);
+
 
 
 //adm
