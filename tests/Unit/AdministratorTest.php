@@ -5,7 +5,6 @@ namespace Tests\Unit;
 use App\Models\Administrator;
 use Database\Factories\AdministratorFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class AdministratorTest extends TestCase
