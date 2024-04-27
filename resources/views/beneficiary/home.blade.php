@@ -10,9 +10,9 @@
 </details>
 <br><br><br>
 
-<a href="/events">Opções de Eventos</a>
+<a href="/beneficiary/event_details">Opções de Eventos</a>
 <br><br><br>
-<a href="/inscriptions/beneficiary">Opções de inscrições</a>
+<a href="/inscriptions/inscription">Opções de inscrições</a>
 
 @endsection
 

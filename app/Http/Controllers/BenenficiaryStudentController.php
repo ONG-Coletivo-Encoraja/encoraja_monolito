@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Http\Controllers;
+namespace App\Http\Controllers;
 
 use App\Models\Event;
 use App\Models\User;
@@ -63,7 +63,7 @@ class BeneficiaryStudentController extends Controller
      */
     public function show_events()
     {
-        $events = Event::where('status', 'like', 'Active')->get();
+        $events = Event::where('status', '=', 'Active')->get();
         return view('beneficiary.event_details', ['events' => $events]);
     }
 

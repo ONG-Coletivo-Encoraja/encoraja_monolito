@@ -29,7 +29,10 @@ use Illuminate\Support\Facades\Route;
 //     Route::resource('/adm', AdministratorController::class);
 // });
 
-Route::get('/home/{type}', [HomeController::class, 'home']);
+Route::get('/home-adm', [AdministratorController::class, 'home']);
+Route::get('/home-beneficiary', [BeneficiaryStudentController::class, 'home']);
+
+
 Route::get('/inscriptions/{type_user}', [InscriptionController::class, 'index']);
 Route::resource('/', HomeController::class);
 

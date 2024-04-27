@@ -1,4 +1,4 @@
-@extends('layouts.main')
+{{--!@extends('layouts.main')
 @section('title', 'Encoraja')
 @section('content')
 
@@ -29,3 +29,4 @@
 @endif
 
 @endsection
+!--}}
