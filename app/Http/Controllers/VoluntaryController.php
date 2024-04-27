@@ -53,6 +53,10 @@ class VoluntaryController extends Controller
             'zip_code' => $request->input('zip_code')
         ]);
 
+        $voluntary->permissions()->create([
+            'type' => 'voluntary'
+        ]);
+
     }
     /**
      * Display the specified resource.
@@ -80,8 +84,10 @@ class VoluntaryController extends Controller
 
         $address = $user->addresses->first();
         $address->update($request->all());
-        
 
+        $permission = $user->permissions->first();
+        $permission->update($request->all());
+        
         return response()->redirectTo('/voluntary');
     }
     /**
