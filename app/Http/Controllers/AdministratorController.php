@@ -41,7 +41,7 @@ class AdministratorController extends Controller
             'email' =>  $request->input('email'),
             'date_birthday' =>  $request->input('date_birthday'),
             'cpf' =>  $request->input('cpf'),
-            'password' =>  $request->input('password'),
+            'password' =>  $request->input('password')
         ]);
 
         $adm->addresses()->create([

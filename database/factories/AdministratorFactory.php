@@ -2,6 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Address;
+use App\Models\Administrator;
+use App\Models\Permission;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,6 +12,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class AdministratorFactory extends Factory
 {
+    protected $model = Administrator::class;
     /**
      * Define the model's default state.
      *
@@ -17,7 +21,19 @@ class AdministratorFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->name(),
+            'email' => fake()->email(),
+            'date_birthday' =>  fake()->date(),
+            'cpf' => '006.075.049-94',
+            'password' => fake()->password()
         ];
     }
+
+    // public function configure()
+    // {
+    //     return $this->afterCreating(function (Administrator $administrator) {
+    //         $administrator->address()->save(Address::factory()->make());
+    //         $administrator->permission()->save(Permission::factory()->make());
+    //     });
+    // }
 }

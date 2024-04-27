@@ -42,16 +42,15 @@ class EventFactory extends Factory
     public function invalid(): array
     {
         return [
-            'name' => '', // Nome vazio (deve falhar na validação)
-            'modality' => 'InvalidModality', // Modalidade inválida (deve falhar na validação)
-            'status' => 'InvalidStatus', // Status inválido (deve falhar na validação)
-            'type' => 'InvalidType', // Tipo inválido (deve falhar na validação)
-            'vacancies' => 'abc', // Vagas inválidas (deve falhar na validação)
-            'social_vacancies' => 'xyz', // Vagas sociais inválidas (deve falhar na validação)
-            'regular_vacancies' => '123', // Vagas regulares inválidas (deve falhar na validação)
-            'interest_area' => 'InvalidInterestArea', // Área de interesse inválida (deve falhar na validação)
-            'price' => 'abc', // Preço inválido (deve falhar na validação)
-            // Adicione outros atributos aqui conforme necessário
+            'name' => '', 
+            'modality' => 'InvalidModality', 
+            'status' => 'InvalidStatus', 
+            'type' => 'InvalidType', 
+            'vacancies' => 'abc', 
+            'social_vacancies' => 'xyz',
+            'regular_vacancies' => '123', 
+            'interest_area' => 'InvalidInterestArea', 
+            'price' => 'abc'
         ];
     }
 }
