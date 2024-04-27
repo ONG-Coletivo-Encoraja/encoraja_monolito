@@ -18,8 +18,9 @@ class BeneficiaryStudentController extends Controller
     }   
     public function index()
     {
-        $users = User::with('permissions')->get();
-        return view('beneficiary.index', ['users' => $users]);
+
+        //$users = User::with('permissions')->get();
+        //return view('beneficiary.index', ['users' => $users]);
     }
     /**
      * Show the form for creating a new resource.
@@ -60,15 +61,10 @@ class BeneficiaryStudentController extends Controller
     /**
      * Display the specified event for beneficiaries.
      */
-    public function show(Event $event)
+    public function show_events()
     {
-        // Verifique se o evento está aprovado antes de exibi-lo
-        if ($event->status === 'Active') {
-            return view('beneficiary.event_details', ['event' => $event]);
-        } else {
-            // Redirecione ou exiba uma mensagem de erro informando que o evento não está disponível
-            return "Beneficiário não está inscrito em nenhum evento ainda";
-        }
+        $events = Event::where('status', 'like', 'Active')->get();
+        return view('beneficiary.event_details', ['events' => $events]);
     }
 
     /**

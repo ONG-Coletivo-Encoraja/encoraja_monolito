@@ -23,7 +23,7 @@
         <a href="/beneficiary/create">Se Cadastrar</a><br>
     </details>
     <br><br><br>
-    <a href="/events">Opções de Eventos</a>
+    <a href="/beneficiary/event_details">Opções de Eventos</a>
     <br><br><br>
     <a href="/inscriptions">Opções de inscrições</a>
 @endif

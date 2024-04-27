@@ -3,7 +3,7 @@
 @section('title', 'Encoraja')
 @section('content')
 
-//organizar isso aqui ele não pode ver a lista de usuários
+{{--! organizar isso aqui ele não pode ver a lista de usuários !--}}
 <div>
     <h1>Lista de usuários</h1>
     <br>
