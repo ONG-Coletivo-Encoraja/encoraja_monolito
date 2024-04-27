@@ -30,22 +30,25 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/home-adm', [AdministratorController::class, 'home']);
-Route::get('/home-beneficiary', [BeneficiaryStudentController::class, 'home']);
+//Route::get('/home-beneficiary', [BeneficiaryStudentController::class, 'home']);
 
 
-Route::get('/inscriptions/{type_user}', [InscriptionController::class, 'index']);
+Route::get('/inscriptions', [InscriptionController::class, 'index']);
 Route::resource('/', HomeController::class);
 
 Route::resource('/events', EventController::class);
 
 Route::resource('/adm', AdministratorController::class);
 
-Route::resource('/beneficiary', BeneficiaryStudentController::class);
+//Route::resource('/beneficiary', BeneficiaryStudentController::class);
 
 Route::resource('/inscriptions', InscriptionController::class);
 
-Route::get('/beneficiary/events_details', [BeneficiaryStudentController::class, 'show_events']);
+//Route::get('/beneficiary/events_details', [BeneficiaryStudentController::class, 'show_events']);
 
+Route::get('/beneficiary/home', [BeneficiaryStudentController::class, 'home'])->name('beneficiary.home');
+Route::get('/beneficiary/edit', [BeneficiaryStudentController::class, 'edit'])->name('beneficiary.edit');
+Route::get('/beneficiary/events', [EventController::class, 'index'])->name('beneficiary.events');
 
 
 //adm

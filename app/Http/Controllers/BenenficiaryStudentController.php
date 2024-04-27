@@ -64,7 +64,7 @@ class BeneficiaryStudentController extends Controller
     public function show_events()
     {
         $events = Event::where('status', '=', 'Active')->get();
-        return view('beneficiary.event_details', ['events' => $events]);
+        return view('beneficiary.events', ['events' => $events]);
     }
 
     /**
