@@ -62,6 +62,7 @@ use Illuminate\Support\Facades\Route;
 //TESTE ROTAS
 Route::get('/home-admin', [HomeController::class, 'home_admin']);
 Route::get('/home-beneficiary', [HomeController::class, 'home_beneficiary']);
+//Route::get('/beneficiary-student', [InscriptionController::class, 'show_user_inscriptions']);
 
 Route::resource('/beneficiary', StudentController::class);
 
@@ -73,8 +74,6 @@ Route::resource('/events', EventController::class);
 Route::resource('/adm', AdministratorController::class);
 
 Route::resource('/inscriptions', InscriptionController::class);
-
-
 
 
 

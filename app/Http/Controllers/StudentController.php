@@ -57,9 +57,9 @@ class StudentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $userId)
     {
-        //
+       //
     }
 
     /**
@@ -96,5 +96,5 @@ class StudentController extends Controller
         $user = User::findOrFail($id);
         $user->delete();
         return response()->redirectTo('/beneficiary');
-    }
+    } 
 }

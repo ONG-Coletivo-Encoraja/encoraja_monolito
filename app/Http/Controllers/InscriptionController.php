@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Redirect;
+use App\Models\User;
 
 class InscriptionController extends Controller
 {
@@ -55,13 +56,14 @@ class InscriptionController extends Controller
     /**
     * Display the inscriptions of a specific user.
     */
-    public function showUserInscriptions(string $userId)
+    public function show_user_inscriptions(string $userId)
     {
+
         $inscriptions = Inscription::whereHas('users', function($query) use ($userId) {
             $query->where('id', $userId);
         })->with(['users', 'events'])->get();
 
-        return view('inscriptions.user_inscriptions', ['inscriptions' => $inscriptions]);
+        return view('beneficiary.student', ['inscriptions' => $inscriptions]);
     }
 
 

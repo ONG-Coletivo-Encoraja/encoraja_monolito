@@ -5,17 +5,13 @@
 
 <details>
     <summary>Cadastrar</summary>
-    <a href="/beneficiary/create">Se Cadastrar</a><br>
+    <a href="/beneficiary/create">Se cadastre aqui</a><br>
 </details>
 
 <br><br><br>
 <a href="/beneficiary">Opções de Eventos</a>
 <br><br><br>
-{{--!
-<a href="/incriptions/student">Opções de inscrições</a>
-<br><br><br>
-<a href="/beneficiary/edit">Meus dados</a>
-!--}}
+<a href="/beneficiary/student">Minhas inscrições</a>
 
 @endsection
 

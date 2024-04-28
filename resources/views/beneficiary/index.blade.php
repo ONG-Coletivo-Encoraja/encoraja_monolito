@@ -6,32 +6,12 @@
 
 <div>
     <h1>Página de Eventos</h1>
-    <table>
-        <thead>
-            <th> Nome </th>
-            <th> Email <th>
-        </thead>
-        <tbod>
-        @foreach($users as $user)
-        <tr>
-            <td>{{$user->name}}</td>
-        </tr>
-        <td>
-            <form action="/beneficiary/{{ $user->id }}/edit" method="GET">
-            @csrf
-            @method('GET')
-            <button class="btn" type="">Meus Dados</button>
-            </form>
-        </td>
-        </tbod>
-    </table>
-
     <br>
     <br>
     <br>
     <table border="1">
         <thead>
-            <th border="1"> ID </th>
+            <th> ID </th>
             <th> Nome </th>
             <th> Descrição </th>
             <th> Data </th>
@@ -65,10 +45,10 @@
                 <td>{{ $event->interest_area }}</td>
                 <td>{{ $event->price }}</td>
                 <td>
-                        <form action="/beneficiary/{{ $event->id }}/events" method="GET">
+                        <form action="/beneficiary/{{ $event->id }}/inscription" method="GET">
                             @csrf
                             @method('GET')
-                            <button class="btn" type="button">Se inscrever</button>
+                            <button class="btn" type="submit">Se inscrever</button>
                         </form>
                         {{--!} <form action="/beneficiary/{{ $event->id }}" method="POST">
                             @csrf
