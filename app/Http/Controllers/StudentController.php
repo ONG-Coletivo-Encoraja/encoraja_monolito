@@ -2,26 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Event;
-use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Event;
 
-
-class BeneficiaryStudentController extends Controller
+class StudentController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function home()
-    {
-        return view('beneficiary.home');
-    }   
     public function index()
     {
-
-        //$users = User::with('permissions')->get();
-        //return view('beneficiary.index', ['users' => $users]);
+        $events = Event::where('status', '=', 'Active')->get();
+        return view('beneficiary.index', ['events' => $events]);
     }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -29,12 +24,13 @@ class BeneficiaryStudentController extends Controller
     {
         return view('beneficiary.create');
     }
+
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-
+        
         $beneficiary = User::create([
             'name' => $request->input('name'),
             'email' =>  $request->input('email'),
@@ -55,16 +51,15 @@ class BeneficiaryStudentController extends Controller
             'type' => 'beneficiary'
         ]);
        
-        return redirect()->route('beneficiary.home')->with('name', $request->name);
+        return redirect('/beneficiary');
     }
- 
+
     /**
-     * Display the specified event for beneficiaries.
+     * Display the specified resource.
      */
-    public function show_events()
+    public function show(string $id)
     {
-        $events = Event::where('status', '=', 'Active')->get();
-        return view('beneficiary.events', ['events' => $events]);
+        //
     }
 
     /**
@@ -73,9 +68,9 @@ class BeneficiaryStudentController extends Controller
     public function edit(string $id)
     {
         $user = User::with(['addresses', 'permissions'])->findOrFail($id);
-        // dd($user);
         return view('beneficiary.edit', ['user' => $user]);
     }
+
     /**
      * Update the specified resource in storage.
      */
@@ -92,6 +87,7 @@ class BeneficiaryStudentController extends Controller
 
         return response()->redirectTo('/beneficiary');
     }
+
     /**
      * Remove the specified resource from storage.
      */
@@ -101,5 +97,4 @@ class BeneficiaryStudentController extends Controller
         $user->delete();
         return response()->redirectTo('/beneficiary');
     }
-
 }

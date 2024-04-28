@@ -57,8 +57,24 @@
         </div>
         <div class="col-12">
             <button type="submit" class="btn btn-primary">Cadastrar</button>
+
+            {{--VALIDA SE CADASTRO É VALIDO--}}
+            {{--
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                    </ul>
+                </div>
+            @endif
+            --}}
         </div>
     </form>
 </div>
+
+
 @endsection
+
  

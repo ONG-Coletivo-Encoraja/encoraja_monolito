@@ -1,7 +1,8 @@
 <?php
 
 use App\Http\Controllers\AdministratorController;
-use App\Http\Controllers\BeneficiaryStudentController;
+//use App\Http\Controllers\BeneficiaryStudentController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InscriptionController;
@@ -29,26 +30,22 @@ use Illuminate\Support\Facades\Route;
 //     Route::resource('/adm', AdministratorController::class);
 // });
 
-Route::get('/home-adm', [AdministratorController::class, 'home']);
-//Route::get('/home-beneficiary', [BeneficiaryStudentController::class, 'home']);
+//ROTAS QUE NÃO DERAM CERTO
+// Route::get('/home-adm', [AdministratorController::class, 'home']);
+// Route::get('/home-beneficiary', [BeneficiaryStudentController::class, 'home']);
 
+// Route::get('/inscriptions', [InscriptionController::class, 'index']);
+// Route::resource('/', HomeController::class);
 
-Route::get('/inscriptions', [InscriptionController::class, 'index']);
-Route::resource('/', HomeController::class);
+// Route::resource('/events', EventController::class);
 
-Route::resource('/events', EventController::class);
+// Route::resource('/adm', AdministratorController::class);
 
-Route::resource('/adm', AdministratorController::class);
+// Route::resource('/beneficiary', BeneficiaryStudentController::class);
 
-//Route::resource('/beneficiary', BeneficiaryStudentController::class);
+// Route::resource('/inscriptions', InscriptionController::class);
 
-Route::resource('/inscriptions', InscriptionController::class);
-
-//Route::get('/beneficiary/events_details', [BeneficiaryStudentController::class, 'show_events']);
-
-Route::get('/beneficiary/home', [BeneficiaryStudentController::class, 'home'])->name('beneficiary.home');
-Route::get('/beneficiary/edit', [BeneficiaryStudentController::class, 'edit'])->name('beneficiary.edit');
-Route::get('/beneficiary/events', [EventController::class, 'index'])->name('beneficiary.events');
+// Route::get('/beneficiary/events_details', [BeneficiaryStudentController::class, 'show_events']);
 
 
 //adm
@@ -62,12 +59,23 @@ Route::get('/beneficiary/events', [EventController::class, 'index'])->name('bene
 ///Route::get('/{type}/home', 'BeneficiaryController@home')->name('beneficiary.home');
 
 
+//TESTE ROTAS
+Route::get('/home-admin', [HomeController::class, 'home_admin']);
+Route::get('/home-beneficiary', [HomeController::class, 'home_beneficiary']);
+
+Route::resource('/beneficiary', StudentController::class);
+
+
+Route::resource('/', HomeController::class);
+
+Route::resource('/events', EventController::class);
+
+Route::resource('/adm', AdministratorController::class);
+
+Route::resource('/inscriptions', InscriptionController::class);
 
 
 
 
 
-
-
-
-require __DIR__.'/auth.php';
+require __DIR__.'/auth.php'; #}

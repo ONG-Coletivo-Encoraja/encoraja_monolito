@@ -9,14 +9,12 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     public function index() {
-        //$permission = Permission::find(1);
-        //return view('home.index', ['permission' => $permission]);
         return view('home.index');
     }
-    public function home() {
-        return view('home.home');
+    public function home_admin() {
+        return view('administrator.home');
     }
-    //public function home_beneficiary() {
-//        return view('beneficiary.home');
-  //  }
+    public function home_beneficiary() {
+       return view('beneficiary.home');
+   }
 }
