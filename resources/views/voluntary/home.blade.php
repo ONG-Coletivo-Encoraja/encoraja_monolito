@@ -9,5 +9,7 @@
 <a href="/voluntary/events">Opções de Eventos</a>
 <br><br><br>
 <a href="/voluntary/createEvent">Sugerir Eventos</a>
+<br><br><br>
+<a href="/inscriptions">Visualisar inscrições</a>
 
 @endsection
