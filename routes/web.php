@@ -29,6 +29,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/home-admin', [HomeController::class, 'home_admin']);
+Route::get('/home-voluntary', [HomeController::class, 'home_voluntary']);
 Route::resource('/', HomeController::class);
 
 Route::resource('/events', EventController::class);

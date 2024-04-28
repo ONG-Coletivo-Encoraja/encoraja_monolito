@@ -4,7 +4,7 @@
 @section('content')
 
 <div>
-    <h1>Lista de usuários</h1>
+    <h1>Meu perfil</h1>
     <br>
     <table border="1">
         <thead>
@@ -15,24 +15,24 @@
             <th>Tipo de usuário</th>
         </thead>
         <tbody>
-            @foreach($users as $user)
+            @foreach($users as $voluntary)
             <tr>
-                <td>{{$user->id}}</td>
-                <td>{{$user->name}}</td>
-                <td>{{$user->email}}</td>
-                <td>{{$user->date_birthday}}</td>
+                <td>{{$voluntary->id}}</td>
+                <td>{{$voluntary->name}}</td>
+                <td>{{$voluntary->email}}</td>
+                <td>{{$voluntary->date_birthday}}</td>
                 <td>
-                    @foreach($user->permissions as $permission)
+                    @foreach($voluntary->permissions as $permission)
                         {{$permission->type}}
                     @endforeach
                 </td>
                 <td>
-                    <form action="/voluntary/{{ $user->id }}/edit" method="GET">
+                    <form action="/voluntary/{{ $voluntary->id }}/edit" method="GET">
                         @csrf
                         @method('GET')
                         <button class="btn" type="submit">Editar</button>
                     </form>
-                    <form action="/voluntary/{{ $user->id }}" method="POST">
+                    <form action="/voluntary/{{ $voluntary->id }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button class="btn" type="submit" onclick="return confirmDelete()">Apagar</button>

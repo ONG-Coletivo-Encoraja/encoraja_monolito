@@ -12,4 +12,7 @@ class HomeController extends Controller
     public function home_admin() {
         return view('home.home');
     }
+    public function home_voluntary() {
+        return view('voluntary.home');
+    }
 }

@@ -47,20 +47,20 @@
             <input type="text" class="form-control" id="zip_code" name="zip_code" required>
         </div>
         <div class="col-md-6">
-            <label for="availability" class="form-label">availability</label>
+            <label for="availability" class="form-label">Disponibilidade</label>
             <input type="text" class="form-control" id="availability" name="availability" required>
         </div>
         <div class="col-md-6">
-            <label for="course_experience" class="form-label">course_experience</label>
+            <label for="course_experience" class="form-label">Experiência</label>
             <input type="text" class="form-control" id="course_experience" name="course_experience" required>
         </div>
         <div class="col-md-6">
-            <label for="how_know" class="form-label">how_know</label>
+            <label for="how_know" class="form-label">Como soube</label>
             <input type="text" class="form-control" id="how_know" name="how_know" required>
         </div>
         <div class="col-md-6">
-            <label for="how_know" class="form-label">how_know</label>
-            <input type="text" class="form-control" id="how_know" name="how_know" required>
+            <label for="expectations" class="form-label">Espectativas</label>
+            <input type="text" class="form-control" id="expectations" name="expectations" required>
         </div>
         <div>
             <input type="checkbox" id="image_term" name="image_term" value="1" required>

@@ -7,7 +7,7 @@
 
 <a href="/home-admin">Administrador</a><br><br>
 
-<a href="/home-admin">Voluntário</a><br><br>
+<a href="/home-voluntary">Voluntário</a><br><br>
 
 <a href="">Beneficiario</a><br><br>
 
