@@ -6,6 +6,13 @@
 <div>
     <h1>Inscrições</h1>
     <br>
+    <div class="col-md-6">
+        <form action="/inscriptions" method="GET">
+            <input type="text" id="search" name="search" placeholder="Procure um usuário ou evento">
+            <button type="input">Pesquisar</button>
+        </form>
+    </div>
+    <br><br>
     <table border="1">
         <thead>
             <th>ID</th>

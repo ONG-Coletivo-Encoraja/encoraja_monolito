@@ -12,7 +12,19 @@ class InscriptionController extends Controller
      */
     public function index()
     {
-        $inscriptions = Inscription::with(['users','events'])->get();
+        $search = request('search');
+
+        $inscriptions = Inscription::with(['users','events']);
+
+        if ($search) {
+            $inscriptions->whereHas('users', function ($query) use ($search) {
+                $query->where('name', 'like', '%' . $search . '%');
+            })->orWhereHas('events', function ($query) use ($search) {
+                $query->where('name', 'like', '%' . $search . '%');
+            });
+        }
+        $inscriptions = $inscriptions->get();
+        
         return view('inscriptions.index', ['inscriptions' => $inscriptions]);
     }
 

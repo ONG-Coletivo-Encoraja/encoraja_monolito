@@ -20,4 +20,15 @@ class Administrator extends Model
         'image_term',
         'data_term'
     ];
+
+    public function search_user_by_name($search){
+        if($search){
+            $users = User::with('permissions')->where([
+                ['name','like', '%'.$search.'%']
+            ])->get();
+        }else {
+            $users = User::with('permissions')->get();
+        }
+        return $users;
+    }
 }
