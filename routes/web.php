@@ -62,8 +62,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/home-admin', [HomeController::class, 'home_admin']);
 Route::get('/home-beneficiary', [HomeController::class, 'home_beneficiary']);
 //Route::get('/validation/{key_user}', [StudentController::class,'beneficiary.validation']);
-Route::get('/beneficiary/validation/{key_user}', [StudentController::class, 'create'])->name('beneficiary.validation');
-Route::get('/beneficiary/student', [StudentController::class, 'show'])->name('beneficiary.student');
+Route::get('/beneficiary/validation/{id}', [StudentController::class, 'create']);
+Route::get('/beneficiary/student', [StudentController::class, 'show']);
 
 Route::resource('/beneficiary', StudentController::class);
 

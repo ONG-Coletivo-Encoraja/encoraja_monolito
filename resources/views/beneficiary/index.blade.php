@@ -25,7 +25,6 @@
             <th> Materiais </th>
             <th> Áreas de interesse </th>
             <th> Price </th>
-            <th>Código</th>
             <th> Inscrição </th>
         </thead>
         <tbody>
@@ -46,11 +45,11 @@
                 <td>{{ $event->interest_area }}</td>
                 <td>{{ $event->price }}</td>
                 <td>
-                        <form action="/validation/{{ $event->id }}" method="GET">
+                        <form action="/beneficiary/{{ $event->id }}" method="GET">
                             @csrf
                             @method('GET')
-                            <input type="hidden" name="key_user" placeholder="Código do usuário">
-                            <button class="btn" type="submit">Inscrever</button>
+                            {{--! <input type="number" name="id" placeholder="Código do usuário"> !--}}
+                            <button class="btn" type="submit">Se Inscrever</button>
                         </form>
                 </td>
             </tr>

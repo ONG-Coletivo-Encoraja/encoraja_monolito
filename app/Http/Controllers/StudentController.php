@@ -51,12 +51,12 @@ class StudentController extends Controller
             'type' => 'beneficiary'
         ]);
 
-        $key_user = $beneficiary->id;
+        $id = $beneficiary->id;
        
         //return redirect('/beneficiary');
 
         //redirecionando para a tela de confirmação com o codigo de cadastro do usuário
-        return redirect()->route('beneficiary.validation', ['key_user'=> $key_user]);
+        return view('beneficiary.validation', ['id'=>$id]);
     }
 
     /**
@@ -65,7 +65,7 @@ class StudentController extends Controller
     public function show(Request $request)
     {
        //redirecionar para a tela de confirmação
-       return redirect()->route('beneficiary.student', ['key_user'=>$request->input ('key_user')]);
+       return redirect()->route('beneficiary.student', ['id'=>$request->input ('id')]);
 
     }
 
