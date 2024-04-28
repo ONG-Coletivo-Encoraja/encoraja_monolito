@@ -4,7 +4,7 @@
 @section('content')
 
 <div>
-    <h1>Meu perfil</h1>
+    <h1></h1>
     <br>
     <table border="1">
         <thead>

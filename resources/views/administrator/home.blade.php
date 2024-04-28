@@ -13,7 +13,6 @@
 <a href="/adm">Visualisar todos os usuários</a>
 <br><br><br>
 <a href="/events">Opções de Eventos</a>
-<br><br><br>
-<a href="">Opções de inscrições</a>
+
 
 @endsection

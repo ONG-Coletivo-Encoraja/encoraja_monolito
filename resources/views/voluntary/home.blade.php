@@ -8,5 +8,6 @@
 <br><br><br>
 <a href="/events">Opções de Eventos</a>
 <br><br><br>
+<a href="/events">Sugerir Eventos</a>
 
 @endsection
