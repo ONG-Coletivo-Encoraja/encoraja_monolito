@@ -6,8 +6,8 @@
 
 <a href="/voluntary/create">Efetuar cadastro</a>
 <br><br><br>
-<a href="/events">Opções de Eventos</a>
+<a href="/voluntary/events">Opções de Eventos</a>
 <br><br><br>
-<a href="/events">Sugerir Eventos</a>
+<a href="/voluntary/createEvent">Sugerir Eventos</a>
 
 @endsection

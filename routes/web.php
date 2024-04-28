@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdministratorController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\VoluntaryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InscriptionController;
@@ -28,8 +29,11 @@ use Illuminate\Support\Facades\Route;
 //     Route::resource('/adm', AdministratorController::class);
 // });
 
+Route::get('/voluntary/createEvent', [VoluntaryController::class, 'createEvent']);
 Route::get('/home-admin', [HomeController::class, 'home_admin']);
 Route::get('/home-voluntary', [HomeController::class, 'home_voluntary']);
+Route::get('/voluntary/events', [VoluntaryController::class, 'selectEvents']);
+
 Route::resource('/', HomeController::class);
 
 Route::resource('/events', EventController::class);

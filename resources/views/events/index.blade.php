@@ -9,6 +9,12 @@
     <a href="/events/create">Criar evento</a>
     <br>
     <br>
+    <div class="col-md-6">
+        <form action="/events" method="GET">
+            <input type="text" id="search" name="search" placeholder="Procure um evento">
+            <button type="input">Pesquisar</button>
+        </form>
+    </div>
     <table border="1">
         <thead>
             <th>ID</th>

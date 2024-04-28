@@ -19,6 +19,7 @@ class VoluntaryController extends Controller
     {
         $users = User::with('permissions')->get();
         return view('voluntary.index', ['users' => $users]);
+
     }
     /**
      * Show the form for creating a new resource.
@@ -27,6 +28,24 @@ class VoluntaryController extends Controller
     {
         return view('voluntary.create');
     }
+
+    public function createEvent()
+    {
+        return view('voluntary.createEvent');
+    }
+
+    public function selectEvents()
+    {
+
+        $search = request('search');
+
+        $event = new Event;
+        $events = $event->search_event_by_name($search);
+
+        return view('voluntary.events', ['events' => $events, 'search' => $search]);
+    }
+
+
     /**
      * Store a newly created resource in storage.
      */
@@ -98,6 +117,7 @@ class VoluntaryController extends Controller
         $user = User::findOrFail($id);
         $user->delete();
         return response()->redirectTo('/voluntary');
+        
     }
 
 }

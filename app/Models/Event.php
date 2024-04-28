@@ -40,7 +40,15 @@ class Event extends Model
     }
 
     // métodos
-    public function event_by_status(String $status){
-        return $this->where('status', $status)->get();
+    public function search_event_by_name($search){
+        if($search){
+            $events = Event::where([
+                ['name','like', '%'.$search.'%']
+            ])->get();
+
+        }else {
+            $events = Event::all();
+        }
+        return $events;
     }
 }

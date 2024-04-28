@@ -4,7 +4,7 @@
 @section('content')
 
 <div>
-    <form class="row g-3" action="/voluntary" method="POST">
+    <form class="row g-3" action="/events" method="POST">
         @csrf
         <div class="col-md-6">
             <label for="name" class="form-label">Nome</label>
