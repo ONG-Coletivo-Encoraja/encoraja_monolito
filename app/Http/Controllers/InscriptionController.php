@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\User;
+use App\Models\Event;
 
 class InscriptionController extends Controller
 {
@@ -23,9 +24,10 @@ class InscriptionController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('inscriptions.create');
+        $inscriptions = Inscription::with(['user','event']);
+        return view('beneficiary.show');
     }
 
     /**
@@ -33,18 +35,29 @@ class InscriptionController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            // Defina as regras de validação aqui
-        ]);
+            // Obtenha o ID do usuário e do evento do formulário
+            $userId = $request->input('user_id');
+            $eventId = $request->input('event_id');
 
-        // Crie a inscrição se os dados forem válidos
-        $inscription = Inscription::create($validatedData);
+            // Verifique se o usuário e o evento existem
+            $user = User::find($userId);
+            $event = Event::find($eventId);
 
-        
-        // Redirecione com uma mensagem de sucesso se a inscrição for criada com sucesso
-        return redirect('/inscriptions')->with('success', 'Inscription created successfully');
-    
-    }
+            if (!$user || !$event) {
+                // Usuário ou evento não encontrado, redirecione ou retorne uma mensagem de erro
+                return view('beneficiary.show')->with('error', 'Usuário ou evento não encontrado.');
+            }
+
+            // Crie uma nova inscrição associando o usuário e o evento
+            $inscription = new Inscription();
+            $inscription->user()->associate($user);
+            $inscription->event()->associate($event);
+            $inscription->save();
+
+            // Redirecione de volta com uma mensagem de sucesso
+            return view('beneficiary.student')->with('success', 'Inscrição realizada com sucesso.');
+
+        }
 
     /**
      * Display the specified resource.
@@ -57,11 +70,11 @@ class InscriptionController extends Controller
     /**
     * Display the inscriptions of a specific user.
     */
-    public function show_user_inscriptions(string $userId)
+    public function show_user_inscriptions(string $user_id)
     {
 
-        $inscriptions = Inscription::whereHas('users', function($query) use ($userId) {
-            $query->where('id', $userId);
+        $inscriptions = Inscription::whereHas('users', function($query) use ($user_id) {
+            $query->where('id', $user_id);
         })->with(['users', 'events'])->get();
 
         return view('beneficiary.student', ['inscriptions' => $inscriptions]);

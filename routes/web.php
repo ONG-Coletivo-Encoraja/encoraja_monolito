@@ -61,12 +61,13 @@ use Illuminate\Support\Facades\Route;
 //TESTE ROTAS
 Route::get('/home-admin', [HomeController::class, 'home_admin']);
 Route::get('/home-beneficiary', [HomeController::class, 'home_beneficiary']);
-//Route::get('/validation/{key_user}', [StudentController::class,'beneficiary.validation']);
+
 Route::get('/beneficiary/validation/{id}', [StudentController::class, 'create']);
-Route::get('/beneficiary/student', [StudentController::class, 'show']);
+
+Route::get('/beneficiary/student/{id}', [InscriptionController::class, 'create']);
+Route::get('/beneficiary/student', [InscriptionController::class, 'show_user_inscriptions']);
 
 Route::resource('/beneficiary', StudentController::class);
-
 
 Route::resource('/', HomeController::class);
 

@@ -10,7 +10,10 @@ class Inscription extends Model
     use HasFactory;
 
     protected $fillable = [
-        'proof'
+        'id',
+        'proof',
+        'event_id',
+        'user_id',
     ];
 
     public function user(){
