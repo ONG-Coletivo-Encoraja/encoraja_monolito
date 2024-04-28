@@ -64,8 +64,10 @@ Route::get('/home-beneficiary', [HomeController::class, 'home_beneficiary']);
 
 Route::get('/beneficiary/validation/{id}', [StudentController::class, 'create']);
 
-Route::get('/beneficiary/student/{id}', [InscriptionController::class, 'create']);
-Route::get('/beneficiary/student', [InscriptionController::class, 'show_user_inscriptions']);
+Route::get('/beneficiary/{event}', [InscriptionController::class, 'event_id']);
+Route::get('/beneficiary/show', [InscriptionController::class, 'user_id']);
+Route::get('/beneficiary/{inscription}', [InscriptionController::class, 'store']);
+
 
 Route::resource('/beneficiary', StudentController::class);
 

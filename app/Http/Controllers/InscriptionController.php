@@ -20,14 +20,29 @@ class InscriptionController extends Controller
         $inscriptions = Inscription::with(['users','events'])->get();
         return view('inscriptions.index', ['inscriptions' => $inscriptions]);
     }
-
     /**
      * Show the form for creating a new resource.
      */
     public function create(Request $request)
     {
         $inscriptions = Inscription::with(['user','event']);
-        return view('beneficiary.show');
+        return view('beneficiary.student');
+    }
+
+    public $event_id;
+    public $user_id;
+
+    public function event_id(Request $request)
+    {
+        $event_id= Event::where('id', $this->event_id)->first();
+        return view('/beneficiary', compact('event_id'));
+    }
+    public function user_id(Request $request)
+    {
+            // Busca o usuário pelo ID fornecido na requisição
+            $id = $request->input('id');
+            $user_id = $this->user_id = User::find($id);
+            return view('beneficiary.show', ['user_id'=>$user_id]);
     }
 
     /**
@@ -35,30 +50,53 @@ class InscriptionController extends Controller
      */
     public function store(Request $request)
     {
-            // Obtenha o ID do usuário e do evento do formulário
-            $userId = $request->input('user_id');
-            $eventId = $request->input('event_id');
+            $event_id = $this->event_id;
+            $user_id = $this->user_id;
 
-            // Verifique se o usuário e o evento existem
-            $user = User::find($userId);
-            $event = Event::find($eventId);
+            $inscription = Inscription::create([
+                'event_id' => ($event_id),
+                'user_id' => ($user_id)
+            ]);
 
-            if (!$user || !$event) {
-                // Usuário ou evento não encontrado, redirecione ou retorne uma mensagem de erro
-                return view('beneficiary.show')->with('error', 'Usuário ou evento não encontrado.');
+            if (!$user_id) {
+                // Se não foi encontrado, exibe uma mensagem de erro
+                return view('beneficiary.show')->with('error', 'Beneficiary user not found with ID: ' . $user_id);
             }
 
-            // Crie uma nova inscrição associando o usuário e o evento
-            $inscription = new Inscription();
-            $inscription->user()->associate($user);
-            $inscription->event()->associate($event);
-            $inscription->save();
 
-            // Redirecione de volta com uma mensagem de sucesso
-            return view('beneficiary.student')->with('success', 'Inscrição realizada com sucesso.');
+            // Se o usuário foi encontrado, cria a inscrição associada a ele
+            $validatedData['id'] = $user_id->id;
+            $validatedData['event'] = $event_id;
+            $inscription = Inscription::create($validatedData);
+
+            // Redireciona com uma mensagem de sucesso se a inscrição for criada com sucesso
+            return view('/beneficiary', ['inscription'=>$request->input ('inscription')]);
+
+
+
+            // // Obtenha o ID do usuário e do evento do formulário
+            // $userId = $request->input('user_id');
+            // $eventId = $request->input('event_id');
+  
+            // // Verifique se o usuário e o evento existem
+            // $user = User::find($userId);
+            // $event = Event::find($eventId);
+
+            // if (!$user || !$event) {
+            //     // Usuário ou evento não encontrado, redirecione ou retorne uma mensagem de erro
+            //     return view('beneficiary.show')->with('error', 'Usuário ou evento não encontrado.');
+            // }
+
+            // // Crie uma nova inscrição associando o usuário e o evento
+            // $inscription = new Inscription();
+            // $inscription->user()->associate($user);
+            // $inscription->event()->associate($event);
+            // $inscription->save();
+
+            // // Redirecione de volta com uma mensagem de sucesso
+            // return view('beneficiary.show')->with('success', 'Inscrição realizada com sucesso.');
 
         }
-
     /**
      * Display the specified resource.
      */
@@ -79,9 +117,6 @@ class InscriptionController extends Controller
 
         return view('beneficiary.student', ['inscriptions' => $inscriptions]);
     }
-
-
-
     /**
      * Show the form for editing the specified resource.
      */
