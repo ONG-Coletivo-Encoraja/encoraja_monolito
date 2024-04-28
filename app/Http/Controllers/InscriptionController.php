@@ -39,6 +39,7 @@ class InscriptionController extends Controller
 
         // Crie a inscrição se os dados forem válidos
         $inscription = Inscription::create($validatedData);
+
         
         // Redirecione com uma mensagem de sucesso se a inscrição for criada com sucesso
         return redirect('/inscriptions')->with('success', 'Inscription created successfully');

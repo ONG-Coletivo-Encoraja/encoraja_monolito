@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\AdministratorController;
-//use App\Http\Controllers\BeneficiaryStudentController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\HomeController;
@@ -62,7 +61,9 @@ use Illuminate\Support\Facades\Route;
 //TESTE ROTAS
 Route::get('/home-admin', [HomeController::class, 'home_admin']);
 Route::get('/home-beneficiary', [HomeController::class, 'home_beneficiary']);
-//Route::get('/beneficiary-student', [InscriptionController::class, 'show_user_inscriptions']);
+//Route::get('/validation/{key_user}', [StudentController::class,'beneficiary.validation']);
+Route::get('/beneficiary/validation/{key_user}', [StudentController::class, 'create'])->name('beneficiary.validation');
+Route::get('/beneficiary/student', [StudentController::class, 'show'])->name('beneficiary.student');
 
 Route::resource('/beneficiary', StudentController::class);
 

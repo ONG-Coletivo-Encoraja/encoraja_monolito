@@ -25,9 +25,10 @@
             <th> Materiais </th>
             <th> Áreas de interesse </th>
             <th> Price </th>
+            <th>Código</th>
             <th> Inscrição </th>
         </thead>
-        <tbod>
+        <tbody>
             @foreach($events as $event)
             <tr>
                 <td>{{ $event->id }}</td>
@@ -45,20 +46,16 @@
                 <td>{{ $event->interest_area }}</td>
                 <td>{{ $event->price }}</td>
                 <td>
-                        <form action="/beneficiary/{{ $event->id }}/inscription" method="GET">
+                        <form action="/validation/{{ $event->id }}" method="GET">
                             @csrf
                             @method('GET')
-                            <button class="btn" type="submit">Se inscrever</button>
+                            <input type="hidden" name="key_user" placeholder="Código do usuário">
+                            <button class="btn" type="submit">Inscrever</button>
                         </form>
-                        {{--!} <form action="/beneficiary/{{ $event->id }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn" type="submit" onclick="return confirmDelete()">Apagar</button>
-                        </form> --}}
                 </td>
             </tr>
             @endforeach
-        </tbod>
+        </tbody>
     </table>
 </div>
 @endsection

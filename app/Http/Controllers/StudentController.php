@@ -50,16 +50,23 @@ class StudentController extends Controller
         $beneficiary->permissions()->create([
             'type' => 'beneficiary'
         ]);
+
+        $key_user = $beneficiary->id;
        
-        return redirect('/beneficiary');
+        //return redirect('/beneficiary');
+
+        //redirecionando para a tela de confirmação com o codigo de cadastro do usuário
+        return redirect()->route('beneficiary.validation', ['key_user'=> $key_user]);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $userId)
+    public function show(Request $request)
     {
-       //
+       //redirecionar para a tela de confirmação
+       return redirect()->route('beneficiary.student', ['key_user'=>$request->input ('key_user')]);
+
     }
 
     /**
