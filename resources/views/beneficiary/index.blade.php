@@ -24,7 +24,7 @@
             <th> Vagas normais </th>
             <th> Materiais </th>
             <th> Áreas de interesse </th>
-            <th> Price </th>
+            <th> Preço </th>
             <th> Inscrição </th>
         </thead>
         <tbody>
@@ -45,7 +45,7 @@
                 <td>{{ $event->interest_area }}</td>
                 <td>{{ $event->price }}</td>
                 <td>
-                        <form action="/beneficiary/{{ $event->id }}" method="GET">
+                        <form action="/beneficiary/create/{{ $event->id }}" method="GET">
                             @csrf
                             @method('GET')
                             {{--! <input type="number" name="id" placeholder="Código do usuário"> !--}}
@@ -58,5 +58,3 @@
     </table>
 </div>
 @endsection
-
-

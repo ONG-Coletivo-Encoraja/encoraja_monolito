@@ -3,6 +3,10 @@
 @section('title', 'Inscrições')
 @section('content')
 
+<form action="/beneficiary/inscriptions" method="GET">
+    <input type="text" id="search" name="search" placeholder="Digite o código do usuário ">
+    <button type="input">Pesquisar</button>
+</form>
 
     <div>
         <h1>Inscrições</h1>
@@ -19,26 +23,27 @@
                 <tr>
                     <td>{{$inscription->id}}</td>
                     <td>
-                        @foreach($inscription->users as $user)
+                        {{-- @foreach($inscription->users as $user)
                             {{$user->name}}
-                        @endforeach
+                        @endforeach --}}
+                        {{$inscription->user_id}}
                     </td>
                     <td>
-                        @foreach($inscription->events as $event)
+                        {{-- @foreach($inscription->events as $event)
                             {{$event->name}}
-                        @endforeach
+                        @endforeach --}}
+                        {{$inscription->event_id}}
                     </td>
                     <td>
                         {{$inscription->status}}
                     </td>
                         <td>
-                            <form action="/beneficiary/{{ $inscription->id }}" method="GET">
+                            <form action="/beneficiary/cancel/{{ $inscription->id }}" method="GET">
                                 @csrf
-                                @method('GET')
-                                <button class="btn" type="submit">Editar</button>
+                                <button class="btn" type="submit" onclick="confirmDelete()">Cancelar Inscrição</button>
                             </form>
                         </td>
-                </tr>
+                </tr>                
                 @endforeach
             </tbody>
         </table>

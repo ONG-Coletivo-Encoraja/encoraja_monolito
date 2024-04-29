@@ -62,11 +62,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/home-admin', [HomeController::class, 'home_admin']);
 Route::get('/home-beneficiary', [HomeController::class, 'home_beneficiary']);
 
-Route::get('/beneficiary/validation/{id}', [StudentController::class, 'create']);
+// Route::get('/beneficiary/{id}', [StudentController::class, 'create']); NÃO PRECISA DELA
 
-Route::get('/beneficiary/{event}', [InscriptionController::class, 'event_id']);
-Route::get('/beneficiary/show', [InscriptionController::class, 'user_id']);
-Route::get('/beneficiary/{inscription}', [InscriptionController::class, 'store']);
+// Route::get('/beneficiary/{event}', [InscriptionController::class, 'event_id']);
+Route::get('/beneficiary/create/{event}', [InscriptionController::class, 'create']);
+Route::get('/beneficiary/inscriptions', [InscriptionController::class, 'show_user_inscriptions']);
+ROUTE::get('/beneficiary/cancel/{inscription_id}', [StudentController::class, 'cancel_inscription']);
+// Route::get('/beneficiary/{inscription}', [InscriptionController::class, 'store']);
 
 
 Route::resource('/beneficiary', StudentController::class);
@@ -81,4 +83,4 @@ Route::resource('/inscriptions', InscriptionController::class);
 
 
 
-require __DIR__.'/auth.php'; #}
+require __DIR__.'/auth.php';

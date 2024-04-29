@@ -11,8 +11,7 @@
 <br><br><br>
 <a href="/beneficiary">Opções de Eventos</a>
 <br><br><br>
-<a href="/beneficiary/student">Minhas inscrições</a>
+<a href="/beneficiary/inscriptions">Minhas inscrições</a>
 
 @endsection
-
 

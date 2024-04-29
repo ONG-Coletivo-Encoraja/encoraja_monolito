@@ -122,4 +122,11 @@ class StudentController extends Controller
         $user->delete();
         return response()->redirectTo('/beneficiary');
     } 
+    public function cancel_inscription(Request $request){
+        $inscription_id = $request->inscription_id;
+
+        $inscription = Inscription::findOrFail($inscription_id);
+        $inscription->delete();
+        return response()->redirectTo('/beneficiary');
+    }
 }
