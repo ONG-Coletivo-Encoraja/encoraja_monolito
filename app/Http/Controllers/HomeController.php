@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use A\Models\Permission;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -10,9 +12,12 @@ class HomeController extends Controller
         return view('home.index');
     }
     public function home_admin() {
-        return view('home.home');
+        return view('administrator.home');
     }
     public function home_voluntary() {
         return view('voluntary.home');
     }
+    public function home_beneficiary() {
+       return view('beneficiary.home');
+   }
 }

@@ -9,6 +9,6 @@
 
 <a href="/home-voluntary">Voluntário</a><br><br>
 
-<a href="">Beneficiario</a><br><br>
+<a href="/home-beneficiary">Beneficiario</a><br><br>
 
 @endsection

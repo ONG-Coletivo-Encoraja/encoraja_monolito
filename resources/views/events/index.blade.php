@@ -3,10 +3,10 @@
 @section('title', 'Encoraja')
 @section('content')
 
+
 <div>
     <h1>Página de Eventos</h1>
     <br>
-    <a href="/events/create">Criar evento</a>
     <br>
     <br>
     <div class="col-md-6">
@@ -53,16 +53,16 @@
                 <td>{{$event->interest_area}}</td>
                 <td>{{$event->price}}</td>
                 <td>
-                    <form action="/events/{{ $event->id }}/edit" method="GET">
-                        @csrf
-                        @method('GET')
-                        <button class="btn" type="submit">Editar</button>
-                    </form>
-                    <form action="/events/{{ $event->id }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button class="btn" type="submit" onclick="return confirmDelete()">Apagar</button>
-                    </form>
+                        <form action="/events/{{ $event->id }}/edit" method="GET">
+                            @csrf
+                            @method('GET')
+                            <button class="btn" type="submit">Editar</button>
+                        </form>
+                        <form action="/events/{{ $event->id }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn" type="submit" onclick="return confirmDelete()">Apagar</button>
+                        </form>
                 </td>
             </tr>
             @endforeach

@@ -7,7 +7,7 @@
     <summary>Cadastrar usuários</summary>
     <a href="/adm/create">Cadastrar administrador</a><br>
     <a href="">Cadastrar voluntário</a><br>
-    <a href="">Cadastrar beneficiario</a><br>
+    <a href="/beneficiary/create">Cadastrar beneficiario</a><br>
 </details>
 <br><br><br>
 <a href="/adm">Visualisar todos os usuários</a>
