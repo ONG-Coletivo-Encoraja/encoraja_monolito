@@ -14,6 +14,6 @@
 <br><br><br>
 <a href="/events">Opções de Eventos</a>
 <br><br><br>
-<a href="">Opções de inscrições</a>
+<a href="/inscriptions">Opções de inscrições</a>
 
 @endsection

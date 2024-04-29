@@ -14,12 +14,12 @@ class InscriptionController extends Controller
     {
         $search = request('search');
 
-        $inscriptions = Inscription::with(['users','events']);
+        $inscriptions = Inscription::with(['user','event']);
 
         if ($search) {
-            $inscriptions->whereHas('users', function ($query) use ($search) {
+            $inscriptions->whereHas('user', function ($query) use ($search) {
                 $query->where('name', 'like', '%' . $search . '%');
-            })->orWhereHas('events', function ($query) use ($search) {
+            })->orWhereHas('event', function ($query) use ($search) {
                 $query->where('name', 'like', '%' . $search . '%');
             });
         }
@@ -57,8 +57,8 @@ class InscriptionController extends Controller
      */
     public function edit(string $id)
     {
-        $inscription = Inscription::with(['users','events'])->findOrFail($id);
-        return view('inscription.edit', ['inscription' => $inscription]);
+        $inscription = Inscription::with(['user','event'])->findOrFail($id);
+        return view('inscriptions.edit', ['inscription' => $inscription]);
     }
 
     /**
@@ -66,7 +66,7 @@ class InscriptionController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $inscription = Inscription::with(['users','events'])->findOrFail($id);
+        $inscription = Inscription::findOrFail($id);
         $inscription->update($request->all());
 
         return response()->redirectTo('/inscriptions');
