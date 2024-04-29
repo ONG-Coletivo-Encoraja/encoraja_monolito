@@ -26,13 +26,13 @@
                         {{-- @foreach($inscription->users as $user)
                             {{$user->name}}
                         @endforeach --}}
-                        {{$inscription->user_id}}
+                        {{$inscription->user->name}}
                     </td>
                     <td>
                         {{-- @foreach($inscription->events as $event)
                             {{$event->name}}
                         @endforeach --}}
-                        {{$inscription->event_id}}
+                        {{$inscription->event->name}}
                     </td>
                     <td>
                         {{$inscription->status}}
