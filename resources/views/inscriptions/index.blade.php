@@ -9,7 +9,7 @@
     <div class="col-md-6">
         <form action="/inscriptions" method="GET">
             <input type="text" id="search" name="search" placeholder="Procure um usuário ou evento">
-            <button type="input">Pesquisar</button>
+            <button type="submit">Pesquisar</button>
         </form>
     </div>
     <br><br>
@@ -19,38 +19,31 @@
             <th>Inscrito</th>
             <th>Evento</th>
             <th>Status</th>
+            <th>Ações</th>
         </thead>
         <tbody>
             @foreach($inscriptions as $inscription)
             <tr>
                 <td>{{$inscription->id}}</td>
+                <td>{{$inscription->user->name}}</td>
+                <td>{{$inscription->event->name}}</td>
+                <td>{{$inscription->status}}</td>
                 <td>
-                    @foreach($inscription->users as $user)
-                        {{$user->name}}
-                    @endforeach
-                </td>
-                <td>
-                    @foreach($inscription->events as $event)
-                        {{$event->name}}
-                    @endforeach
-                </td>
-                <td>
-                    {{$inscription->status}}
-                </td>
-                <td>
-                    <form action="/adm/{{ $inscription->id }}/edit" method="GET">
+                    {{-- <form action="{{ route('inscriptions.edit', $inscription->id) }}" method="GET">
+                        @csrf
+                        <button class="btn" type="submit">Editar</button>
+                    </form> --}}
+                    <form action="/inscriptions/{{ $inscription->id }}/edit" method="GET">
                         @csrf
                         @method('GET')
                         <button class="btn" type="submit">Editar</button>
                     </form>
-                    {{-- <form action="/adm/{{ $user->id }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button class="btn" type="submit" onclick="return confirmDelete()">Apagar</button>
-                    </form> --}}
+                    {{-- Add delete form here --}}
                 </td>
             </tr>
             @endforeach
         </tbody>
     </table>
 </div>
+
+@endsection
