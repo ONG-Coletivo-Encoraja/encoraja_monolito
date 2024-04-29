@@ -34,6 +34,7 @@ Route::get('/voluntary/createEvent', [VoluntaryController::class, 'createEvent']
 Route::get('/home-admin', [HomeController::class, 'home_admin']);
 Route::get('/home-voluntary', [HomeController::class, 'home_voluntary']);
 Route::get('/voluntary/events', [VoluntaryController::class, 'selectEvents']);
+//Route::get('/voluntary/inscriptions', [VoluntaryController::class, 'createInscription']);
 //ROTAS QUE NÃO DERAM CERTO
 // Route::get('/home-adm', [AdministratorController::class, 'home']);
 // Route::get('/home-beneficiary', [BeneficiaryStudentController::class, 'home']);

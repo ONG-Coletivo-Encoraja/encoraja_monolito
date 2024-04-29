@@ -44,6 +44,10 @@ class VoluntaryController extends Controller
 
         return view('voluntary.events', ['events' => $events, 'search' => $search]);
     }
+    public function createInscription()
+    {
+        return view('voluntary.inscriptions');
+    }
 
 
     /**
