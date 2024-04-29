@@ -15,7 +15,7 @@ class InscriptionController extends Controller
     /**
      * Display a listing of the resource.
      */
-    //TEVE CONFLITO
+    //teve alterações
     public function index()
     {
         $search = request('search');
