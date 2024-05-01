@@ -3,8 +3,9 @@
 @section('title', 'Editar Evento')
 
 @section('content')
-    <h1>Editar Evento</h1>
-    <form action="/events/{{ $event->id }}" method="POST">
+    <h1 class="tittle1">Editar Evento</h1>
+
+    <form action="/events/{{ $event->id }}" method="POST" class="row g-3 register-admin-form rounded">
         @csrf
         @method('PUT')
 
@@ -76,9 +77,10 @@
             <label for="price" class="form-label">Preço (opcional)</label>
             <input type="number" step="any" class="form-control" id="price" name="price" value="{{ $event->price }}" required>
         </div>
+        <br>
         <div class="col-12">
-            <button type="submit" class="btn btn-primary">Salvar alterações</button>
+            <button type="submit" class="btn-form rounded">Salvar alterações</button>
         </div>
     </form>
-    <a href="/events"><button>Cancelar</button></a>
+    {{-- <a href="/events"><button>Cancelar</button></a> --}}
 @endsection

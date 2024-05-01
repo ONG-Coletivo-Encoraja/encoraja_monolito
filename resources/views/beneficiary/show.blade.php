@@ -3,7 +3,7 @@
 @section('title', 'Encoraja')
 @section('content')
 
-<div>    
+<div class="register-inscription-form rounded">    
     <form class="row g-3" method="POST" action="/inscriptions">
         @csrf
         @method('POST')
@@ -11,8 +11,10 @@
             <label for="name" class="form-label">Código do usuário</label>
             <input type="number" class="form-control" id="user_id" name="user_id" required>
             <br>
+            <label for="name" class="form-label">Código do evento</label>
             <input type="text" name="event_id" id="event_id" class="form-control" value="{{ $event }}" readonly>
-            <button type="submit" class="btn btn-primary">Salvar Inscrição</button>
+            <br>
+            <button type="submit" class="btn-form rounded">Salvar Inscrição</button>
         </div>
     </form>
 </div>

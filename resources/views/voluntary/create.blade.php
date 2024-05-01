@@ -3,7 +3,7 @@
 @section('title', 'Encoraja')
 @section('content')
 
-<div>
+<div class="register-admin-form rounded">
     <form class="row g-3" action="/events" method="POST">
         @csrf
         <div class="col-md-6">
@@ -71,7 +71,7 @@
             <label for="data_term">Aceito termo de dados</label>
         </div>
         <div class="col-12">
-            <button type="submit" class="btn btn-primary">Cadastrar</button>
+            <button type="submit" class="btn-form rounded">Cadastrar</button>
         </div>
     </form>
 </div>

@@ -3,12 +3,14 @@
 @section('title', 'Encoraja')
 @section('content')
 
-<h1>Escolha um tipo de usuário</h1><br><br><br>
+<h1 class="tittle">Escolha um tipo de usuário</h1>
 
-<a href="/home-admin">Administrador</a><br><br>
+<div class="options-user">
+    <a href="/home-admin" class="choose-user rounded">Administrador</a>
 
-<a href="/home-voluntary">Voluntário</a><br><br>
+    <a href="/home-voluntary" class="choose-user rounded">Voluntário</a>
 
-<a href="/home-beneficiary">Beneficiario</a><br><br>
+    <a href="/home-beneficiary" class="choose-user rounded">Beneficiário</a>
+</div>
 
 @endsection

@@ -3,13 +3,10 @@
 @section('title', 'Encoraja')
 @section('content')
 
+<h1 class="tittle1">Página de Eventos</h1>
 
-<div>
-    <h1>Página de Eventos</h1>
-    <br>
-    <br>
-    <br>
-    <table border="1">
+<div class="users-list">
+    <table border="1" class="table table-striped">
         <thead>
             <th> ID </th>
             <th> Nome </th>

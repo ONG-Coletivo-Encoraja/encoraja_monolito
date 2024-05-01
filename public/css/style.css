@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+body {
+    background-color: #bf9f88;
+    font-family: "Poppins", sans-serif;
+}
+nav header{
+    position: fixed;
+}
+
+/* Formatações da Home */
+.options-user{
+    flex-wrap: wrap;
+    display: flex;
+    justify-content:space-around;
+}
+
+.choose-user {
+    background-color: #702055;
+    text-decoration: none;
+    color: white;
+    width: 300px;
+    text-align: center;
+    padding: 20px;
+    font-size: 20px;
+}
+.tittle {
+    color: white;
+    text-align: center;
+    margin-bottom: 100px;
+}
+
+/* Formulários de inscrição */
+
+.register-admin-form {
+    background-color: white;
+    padding: 20px;
+    margin: 20px;
+}
+
+.btn-form {
+    background-color: #702055;
+    text-decoration: none;
+    color: white;
+    width: 200px;
+    padding: 5px;
+    font-size: 18px;
+    border: none;
+    text-align: center;
+}
+.form-control {
+    border-color: #f89051;
+}
+
+/* Home do administrador */
+
+.options-home-admin {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.option-home-admin {
+    background-color: #702055;
+    text-decoration: none;
+    color: white;
+    width: 350px;
+    text-align: center;
+    padding: 20px;
+    font-size: 20px;
+}
+
+.detail-option {
+    text-decoration: none;
+    color: #f89051;
+    font-size: 20px;
+}
+
+/* Tela de lista de usuários */
+.users-list {
+    padding: 20px;
+}
+
+.actions-form {
+    display: flex;
+    justify-content: space-around;
+}
+.btn {
+    background-color: #f89051;
+}
+.btn-search {
+    border: none;
+    padding-right: 15px;
+    padding-left: 15px;
+    background-color: #702055;
+}
+.tittle1 {
+    color: white;
+    text-align: center; 
+}
+
+/* Edição de inscrição */
+.inscription-edit-form {
+    background-color: white;
+    padding: 20px;
+}
+
+.register-inscription-form {
+    background-color: white;
+    padding: 20px;
+    margin: 20px;
+}
+
+.codigo-beneficiario {
+    color: white;
+    text-align: center;
+    margin-bottom: 100px;
+    color: #702055;
+    font-size: 20px;
+    text-align: center;
+}

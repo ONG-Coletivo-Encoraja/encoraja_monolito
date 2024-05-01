@@ -3,7 +3,7 @@
 @section('title', 'Editar Inscrições')
 @section('content')
 
-<div>
+<div class="register-admin-form rounded">
     <form class="row g-3" action="/inscriptions/{{ $inscription->id }}" method="POST">
         @csrf
         @method('PUT')
@@ -33,7 +33,7 @@
         </div>
 
         <div class="col-12">
-            <button type="submit" class="btn btn-primary">Salvar alterações</button>
+            <button type="submit" class="btn-form rounded">Salvar alterações</button>
         </div>
     </form>
 </div>

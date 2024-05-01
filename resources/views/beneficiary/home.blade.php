@@ -3,15 +3,16 @@
 @section('title', 'Encoraja')
 @section('content')
 
-<details>
-    <summary>Cadastrar</summary>
-    <a href="/beneficiary/create">Se cadastre aqui</a><br>
-</details>
+<h1 class="tittle">Opções de beneficiário</h1>
 
-<br><br><br>
-<a href="/beneficiary">Opções de Eventos</a>
-<br><br><br>
-<a href="/beneficiary/inscriptions">Minhas inscrições</a>
+<div class="options-home-admin">
+
+    <a href="/beneficiary/create" class="option-home-admin rounded">Se cadastre aqui</a>
+
+    <a href="/beneficiary" class="option-home-admin rounded">Opções de Eventos</a>
+
+    <a href="/beneficiary/inscriptions" class="option-home-admin rounded">Minhas inscrições</a>
+</div>
 
 @endsection
 

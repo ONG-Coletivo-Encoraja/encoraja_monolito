@@ -3,7 +3,7 @@
 @section('title', 'Editar Meus dados')
 @section('content')
 {{--filtrar para que ele possa editar somente o que é dele--}}
-<div>
+<div class="register-admin-form rounded">
     <form class="row g-3" action="/beneficiary/{{ $user->id }}" method="POST">
         @csrf
         @method('PUT')
@@ -68,7 +68,7 @@
             <label for="data_term">Aceito termo de dados</label>
         </div>
         <div class="col-12">
-            <button type="submit" class="btn btn-primary">Salvar alterações</button>
+            <button type="submit" class="btn-form rounded">Salvar alterações</button>
         </div>
     </form>
 </div>
