@@ -15,10 +15,8 @@ class VoluntaryTest extends TestCase
      */
     public function test_creates_a_new_voluntary(): void
     {
-        // Preparação
         $voluntaryAttributes = Voluntary::factory()->make()->toArray();
         
-        // Ação
         $voluntary = Voluntary::factory()->create($voluntaryAttributes);
     
         $this->assertInstanceOf(Voluntary::class, $voluntary);
