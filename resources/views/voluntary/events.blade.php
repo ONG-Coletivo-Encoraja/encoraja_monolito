@@ -33,6 +33,8 @@
             <th>Materiais</th>
             <th>Áreas de interesse</th>
             <th>Price</th>
+            <th>Inscritos</th>
+
         </thead>
         <tbod>
             @foreach($events as $event)
@@ -54,6 +56,7 @@
                 <td>{{$event->price}}</td>
             </tr>
             @endforeach
+
         </tbod>
     </table>
 </div>

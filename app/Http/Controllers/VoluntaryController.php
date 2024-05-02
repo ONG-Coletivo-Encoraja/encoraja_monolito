@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use App\Models\User;
+use App\Models\Inscription;
 use Illuminate\Http\Request;
+
 
 class VoluntaryController extends Controller
 {
@@ -44,9 +46,18 @@ class VoluntaryController extends Controller
 
         return view('voluntary.events', ['events' => $events, 'search' => $search]);
     }
-    public function createInscription()
+    public function viewInscriptions()
     {
-        return view('voluntary.inscriptions');
+        $search = request('search');
+        
+        if($search){
+            $inscriptions = Inscription::with('user', 'event')->where([
+                ['user_id','like', '%'.$search.'%']
+            ])->get();
+        }else{
+            $inscriptions = Inscription::with('user', 'event')->get();
+        }
+        return view('voluntary.inscriptions', ['inscriptions' => $inscriptions]);
     }
 
 
