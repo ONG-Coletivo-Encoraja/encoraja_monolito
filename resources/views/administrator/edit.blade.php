@@ -14,6 +14,9 @@
         <div class="col-md-6">
             <label for="email" class="form-label">Email</label>
             <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}" required>
+            @error('email')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
         <div class="col-md-6">
             <label for="date_birthday" class="form-label">Data de nascimento</label>

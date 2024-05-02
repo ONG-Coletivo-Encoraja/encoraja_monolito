@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Administrator;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
 
 class AdministratorController extends Controller
 {
@@ -14,7 +15,7 @@ class AdministratorController extends Controller
     public function home()
     {
         return view('administrator.home');
-    }   
+    }
     public function index()
     {
         $search = request('search');
@@ -35,27 +36,31 @@ class AdministratorController extends Controller
      */
     public function store(Request $request)
     {
+        try {
+            $adm = User::create([
+                'name' => $request->input('name'),
+                'email' => $request->input('email'),
+                'date_birthday' => $request->input('date_birthday'),
+                'cpf' => $request->input('cpf'),
+                'password' => $request->input('password')
+            ]);
 
-        $adm = User::create([
-            'name' => $request->input('name'),
-            'email' =>  $request->input('email'),
-            'date_birthday' =>  $request->input('date_birthday'),
-            'cpf' =>  $request->input('cpf'),
-            'password' =>  $request->input('password')
-        ]);
+            $adm->addresses()->create([
+                'street' => $request->input('street'),
+                'number' => $request->input('number'),
+                'neighbourhood' => $request->input('neighbourhood'),
+                'city' => $request->input('city'),
+                'zip_code' => $request->input('zip_code')
+            ]);
 
-        $adm->addresses()->create([
-            'street' =>  $request->input('street'),
-            'number' =>  $request->input('number'),
-            'neighbourhood' =>  $request->input('neighbourhood'),
-            'city' => $request->input('city'),
-            'zip_code' => $request->input('zip_code')
-        ]);
-
-        $adm->permissions()->create([
-            'type' => 'administrator'
-        ]);
-       
+            $adm->permissions()->create([
+                'type' => 'administrator'
+            ]);
+        } catch (QueryException $e) {
+            if ($e) {
+                return back()->withInput()->withErrors(['email' => 'O email fornecido já está em uso. Tente novamente!']);
+            }
+        }
         return redirect('/adm');
     }
     /**
@@ -71,7 +76,7 @@ class AdministratorController extends Controller
     public function edit(string $id)
     {
         $user = User::with(['addresses', 'permissions'])->findOrFail($id);
-        // dd($user);
+
         return view('administrator.edit', ['user' => $user]);
     }
     /**
@@ -79,16 +84,23 @@ class AdministratorController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $user = User::with('addresses')->findOrFail($id);
-        $user->update($request->all());
+        try{
+            $user = User::with('addresses')->findOrFail($id);
+            $user->update($request->all());
+    
+            $address = $user->addresses->first();
+            $address->update($request->all());
+    
+            $permission = $user->permissions->first();
+            $permission->update($request->all());
+    
+            return response()->redirectTo('/adm');
+        }catch(QueryException $e){
+            if ($e) {
+                return back()->withInput()->withErrors(['email' => 'O email fornecido já está em uso. Tente novamente!']);
+            }
+        }
 
-        $address = $user->addresses->first();
-        $address->update($request->all());
-        
-        $permission = $user->permissions->first();
-        $permission->update($request->all());
-
-        return response()->redirectTo('/adm');
     }
     /**
      * Remove the specified resource from storage.
@@ -99,8 +111,4 @@ class AdministratorController extends Controller
         $user->delete();
         return response()->redirectTo('/adm');
     }
-    // public function event(){
-    //     $events = Event::all();
-    //     return view('events.index', ['events' => $events]);
-    // }
 }
