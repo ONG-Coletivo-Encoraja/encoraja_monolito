@@ -12,9 +12,17 @@
             <input type="number" class="form-control" id="user_id" name="user_id" required>
             <br>
             <input type="text" name="event_id" id="event_id" class="form-control" value="{{ $event }}" readonly>
-            <button type="submit" class="btn btn-primary">Salvar Inscrição</button>
+            <button type="submit" class="btn btn-primary">Salvar Inscrição</button>                
         </div>
     </form>
+
+</div>
+   {{-- Exibir mensagens de erro --}}
+   @if(session('error'))
+    <div class="alert alert-danger mt-3">
+        {{ session('error') }}
+    </div>
+    @endif
 </div>
 
 @endsection

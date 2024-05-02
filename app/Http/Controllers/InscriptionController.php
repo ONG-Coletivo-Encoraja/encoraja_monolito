@@ -48,16 +48,48 @@ class InscriptionController extends Controller
      */
     public function store(Request $request)
     {
+    //     $event_id = $request->input('event_id');
+    //     $user_id = $request->input('user_id');
+
+    //     $inscription = Inscription::create([
+    //         'proof' => 'lalal',
+    //         'status' => 'pending',
+    //         'event_id' => ($event_id),
+    //         'user_id' => ($user_id)
+    //     ]);
+
+    //     return redirect('/beneficiary');
+
         $event_id = $request->input('event_id');
         $user_id = $request->input('user_id');
 
+        // Verifique se o usuário existe
+        $user = User::find($user_id);
+
+        if (!$user) {
+            // Se o usuário não existe, retorne uma mensagem de erro
+            return redirect()->back()->with('error', 'Usuário não encontrado.');
+        }
+
+        // Verifique se o usuário já possui uma inscrição para este evento
+        $existingInscription = Inscription::where('event_id', $event_id)
+            ->where('user_id', $user_id)
+            ->first();
+
+        if ($existingInscription) {
+            // Se o usuário já estiver inscrito neste evento, retorne uma mensagem de erro
+            return redirect()->back()->with('error', 'Este usuário já está inscrito neste evento.');
+        }
+
+        // Caso contrário, crie a nova inscrição
         $inscription = Inscription::create([
             'proof' => 'lalal',
             'status' => 'pending',
-            'event_id' => ($event_id),
-            'user_id' => ($user_id)
+            'event_id' => $event_id,
+            'user_id' => $user_id
         ]);
 
+        // Redirecione para onde quiser após a criação bem-sucedida da inscrição
         return redirect('/beneficiary');
 
     }
