@@ -2,16 +2,23 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\BeneficiaryStudent;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-class StudentFactory extends Factory
+
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\BeneficiaryStudent>
+ */
+class BeneficiaryStudentFactory extends Factory
 {
     /**
-     * The current password being used by the factory.
+     * The name of the factory's corresponding model.
+     *
+     * @var string
      */
-    protected static ? string $password;
+    protected $model = BeneficiaryStudent::class;
 
     /**
      * Define the model's default state.
@@ -27,7 +34,7 @@ class StudentFactory extends Factory
             'cpf' => fake()->numerify('###.###.###-##'),
             'date_birthday' =>  fake()->date(),
             'image_term' => true,
-            'data_term' => true
+            'data_term' => true,
         ];
     }
 }

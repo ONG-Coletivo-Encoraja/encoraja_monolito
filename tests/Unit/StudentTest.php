@@ -2,69 +2,55 @@
 
 namespace Tests\Unit;
 
-use App\Models\Student;
-use Database\Factories\StudentFactory;
+use App\Models\BeneficiaryStudent;
+use Database\Factories\BeneficiaryStudentFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Tests\TestCase;
 
 class StudentTest extends TestCase
 {
-    // use RefreshDatabase;
-    // public function test_creates_a_new_admin()
-    // {
-    //     // Arrange
-    //     $adminAttributes = AdministratorFactory::new()->make()->toArray();
+    use RefreshDatabase;
+    public function test_creates_a_new_student()
+    {
+        // Arrange
+        $studentAttributes = BeneficiaryStudentFactory::new()->make()->toArray();
         
-    //     // Act
-    //     $admin = Administrator::factory()-> create($adminAttributes);
+        // Act
+        $student = BeneficiaryStudent::factory()-> create($studentAttributes);
     
-    //     // Assert
-    //     $this->assertInstanceOf(Administrator::class, $admin);
-    //     $this->assertEquals($adminAttributes['name'], $admin->name);
-    //     $this->assertEquals($adminAttributes['email'], $admin->email);
-    //     $this->assertEquals($adminAttributes['date_birthday'], $admin->date_birthday);
-    //     $this->assertEquals($adminAttributes['cpf'], $admin->cpf);
-    //     $this->assertEquals($adminAttributes['password'], $admin->password);
-    // }
+        // Assert
+        $this->assertInstanceOf(BeneficiaryStudent::class, $student);
+        $this->assertEquals($studentAttributes['name'], $student->name);
+        $this->assertEquals($studentAttributes['email'], $student->email);
+        $this->assertEquals($studentAttributes['date_birthday'], $student->date_birthday);
+        $this->assertEquals($studentAttributes['cpf'], $student->cpf);
+        $this->assertEquals($studentAttributes['password'], $student->password);
+    }
 
-    // public function test_admin_update(){
-    //     $admin = Administrator::factory()->create();
+    public function test_student_update(){
+        $student = BeneficiaryStudent::factory()->create();
 
-    //     $updatedData = [
-    //         'name' => 'Novo nome adm',
-    //         'email' => 'novoemail@gmail.com'
-    //     ];
+        $updatedData = [
+            'name' => 'Novo nome student',
+            'email' => 'novoemail@gmail.com'
+        ];
 
-    //     $admin->update($updatedData);
+        $student->update($updatedData);
 
-    //     $updatedAdmin = Administrator::find($admin->id);
+        $updatedStudent = BeneficiaryStudent::find($student->id);
     
-    //     $this->assertEquals($updatedData['name'], $updatedAdmin->name);
-    //     $this->assertEquals($updatedData['email'], $updatedAdmin->email);
-    // }
+        $this->assertEquals($updatedData['name'], $updatedStudent->name);
+        $this->assertEquals($updatedData['email'], $updatedStudent->email);
+    }
 
-    // public function test_admin_delete(){
-    //     $admin = Administrator::factory()->create();
+    public function test_student_delete(){
+        $student = BeneficiaryStudent::factory()->create();
 
-    //     $this->assertDatabaseHas('users', ['id' => $admin->id]);
+        $this->assertDatabaseHas('users', ['id' => $student->id]);
 
-    //     $admin->delete();
+        $student->delete();
 
-    //     $this->assertDatabaseMissing('users', ['id' => $admin->id]);
-    // }
-
-    // public function test_admin_filtering_by_name(){
-    //     Administrator::factory()->create(['name' => 'Maria Eduarda']);
-    //     Administrator::factory()->create(['name' => 'Maria Carolina']);
-    //     Administrator::factory()->create(['name' => 'Lucas Marino']);
-
-    //     $filter = new Administrator;
-
-    //     $filteredAdmin = $filter->search_user_by_name('Maria');
-    
-    //     $this->assertCount(2, $filteredAdmin);
-    //     $this->assertTrue($filteredAdmin->contains('name', 'Maria Eduarda'));
-    //     $this->assertTrue($filteredAdmin->contains('name', 'Maria Carolina'));
-    //     $this->assertFalse($filteredAdmin->contains('name', 'Lucas Marino'));
-    // }
+        $this->assertDatabaseMissing('users', ['id' => $student->id]);
+    }
 }
