@@ -33,7 +33,6 @@
             <th>Materiais</th>
             <th>Áreas de interesse</th>
             <th>Price</th>
-            <th>Inscritos</th>
 
         </thead>
         <tbod>
