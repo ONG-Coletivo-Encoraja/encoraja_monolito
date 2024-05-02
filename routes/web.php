@@ -6,12 +6,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\VoluntaryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InscriptionController;
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
@@ -24,15 +19,7 @@ use Illuminate\Support\Facades\Route;
 //     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 // });
 
-// //Rotas de adm
-// Route::middleware('auth')->group(function () {
-//     Route::resource('/events', EventController::class);
-//     Route::resource('/adm', AdministratorController::class);
-// });
-
 Route::get('/voluntary/createEvent', [VoluntaryController::class, 'createEvent']);
-Route::get('/home-admin', [HomeController::class, 'home_admin']);
-Route::get('/home-voluntary', [HomeController::class, 'home_voluntary']);
 Route::get('/voluntary/events', [VoluntaryController::class, 'selectEvents']);
 Route::get('/voluntary/inscriptions', [VoluntaryController::class, 'viewInscriptions']);
 //ROTAS QUE NÃO DERAM CERTO
@@ -68,14 +55,12 @@ Route::get('/voluntary/inscriptions', [VoluntaryController::class, 'viewInscript
 Route::get('/home-admin', [HomeController::class, 'home_admin']);
 Route::get('/home-beneficiary', [HomeController::class, 'home_beneficiary']);
 
-// Route::get('/beneficiary/{id}', [StudentController::class, 'create']); NÃO PRECISA DELA
 
-// Route::get('/beneficiary/{event}', [InscriptionController::class, 'event_id']);
+
+
 Route::get('/beneficiary/create/{event}', [InscriptionController::class, 'create']);
 Route::get('/beneficiary/inscriptions', [InscriptionController::class, 'show_user_inscriptions']);
-ROUTE::get('/beneficiary/cancel/{inscription_id}', [StudentController::class, 'cancel_inscription']);
-// Route::get('/beneficiary/{inscription}', [InscriptionController::class, 'store']);
-
+Route::get('/beneficiary/cancel/{inscription_id}', [StudentController::class, 'cancel_inscription']);
 
 Route::resource('/beneficiary', StudentController::class);
 

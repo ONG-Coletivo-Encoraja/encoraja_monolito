@@ -17,6 +17,14 @@
             <button type="submit" class="btn-form rounded">Salvar Inscrição</button>
         </div>
     </form>
+
+</div>
+   {{-- Exibir mensagens de erro --}}
+   @if(session('error'))
+    <div class="alert alert-danger mt-3">
+        {{ session('error') }}
+    </div>
+    @endif
 </div>
 
 @endsection

@@ -43,91 +43,57 @@ class InscriptionController extends Controller
         return view('beneficiary.show', ['event' => $event_id]);
     }
 
-    // public $event_id;
-    // public $user_id;
-
-    // public function event_id(Request $request)
-    // {
-    //     $event_id= Event::where('id', $this->event_id)->first();
-    //     return view('/beneficiary', compact('event_id'));
-    // }
-
-
-    // public function user_id(Request $request)
-    // {
-    //     // Busca o usuário pelo ID fornecido na requisição
-    //     $id = $request->input('id');
-    //     $user_id = $this->user_id = User::find($id);
-    //     return view('beneficiary.show');
-    // }
-
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
+    //     $event_id = $request->input('event_id');
+    //     $user_id = $request->input('user_id');
+
+    //     $inscription = Inscription::create([
+    //         'proof' => 'lalal',
+    //         'status' => 'pending',
+    //         'event_id' => ($event_id),
+    //         'user_id' => ($user_id)
+    //     ]);
+
+    //     return redirect('/beneficiary');
+
         $event_id = $request->input('event_id');
         $user_id = $request->input('user_id');
 
+        // Verifique se o usuário existe
+        $user = User::find($user_id);
+
+        if (!$user) {
+            // Se o usuário não existe, retorne uma mensagem de erro
+            return redirect()->back()->with('error', 'Usuário não encontrado.');
+        }
+
+        // Verifique se o usuário já possui uma inscrição para este evento
+        $existingInscription = Inscription::where('event_id', $event_id)
+            ->where('user_id', $user_id)
+            ->first();
+
+        if ($existingInscription) {
+            // Se o usuário já estiver inscrito neste evento, retorne uma mensagem de erro
+            return redirect()->back()->with('error', 'Este usuário já está inscrito neste evento.');
+        }
+
+        // Caso contrário, crie a nova inscrição
         $inscription = Inscription::create([
             'proof' => 'lalal',
             'status' => 'pending',
-            'event_id' => ($event_id),
-            'user_id' => ($user_id)
+            'event_id' => $event_id,
+            'user_id' => $user_id
         ]);
 
+        // Redirecione para onde quiser após a criação bem-sucedida da inscrição
         return redirect('/beneficiary');
 
-        // if (!$user_id) {
-        //     // Se não foi encontrado, exibe uma mensagem de erro
-        //     return view('beneficiary.show')->with('error', 'Beneficiary user not found with ID: ' . $user_id);
-        // }
-
-
-        // // Se o usuário foi encontrado, cria a inscrição associada a ele
-        // $validatedData['id'] = $user_id->id;
-        // $validatedData['event'] = $event_id;
-        // $inscription = Inscription::create($validatedData);
-
-        // // Redireciona com uma mensagem de sucesso se a inscrição for criada com sucesso
-        // return view('/beneficiary', ['inscription' => $request->input('inscription')]);
-
-
-
-        // // Obtenha o ID do usuário e do evento do formulário
-        // $userId = $request->input('user_id');
-        // $eventId = $request->input('event_id');
-
-        // // Verifique se o usuário e o evento existem
-        // $user = User::find($userId);
-        // $event = Event::find($eventId);
-
-        // if (!$user || !$event) {
-        //     // Usuário ou evento não encontrado, redirecione ou retorne uma mensagem de erro
-        //     return view('beneficiary.show')->with('error', 'Usuário ou evento não encontrado.');
-        // }
-
-        // // Crie uma nova inscrição associando o usuário e o evento
-        // $inscription = new Inscription();
-        // $inscription->user()->associate($user);
-        // $inscription->event()->associate($event);
-        // $inscription->save();
-
-        // // Redirecione de volta com uma mensagem de sucesso
-        // return view('beneficiary.show')->with('success', 'Inscrição realizada com sucesso.');
-
     }
-    /**
-     * Display the specified resource.
-     */
-    // public function show(string $id)
-    // {
-    //     $inscription = Inscription::with(['users', 'events'])->findOrFail($id);
-    //     return view('inscriptions.show', ['inscription' => $inscription]);
-    // }
-    /**
-     * Display the inscriptions of a specific user.
-     */
+
     public function show_user_inscriptions()
     {
         $search = request('search');
@@ -139,10 +105,6 @@ class InscriptionController extends Controller
         }else{
             $inscriptions = [];
         }
-
-        // $inscriptions = Inscription::whereHas('users', function ($query) use ($user_id) {
-        //     $query->where('id', $user_id);
-        // })->with(['users', 'events'])->get();
 
         return view('beneficiary.inscriptions', ['inscriptions' => $inscriptions]);
     }

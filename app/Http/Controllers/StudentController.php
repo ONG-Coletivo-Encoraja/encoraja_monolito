@@ -53,8 +53,6 @@ class StudentController extends Controller
         ]);
 
         $id = $beneficiary->id;
-       
-        //return redirect('/beneficiary');
 
         //redirecionando para a tela de confirmação com o codigo de cadastro do usuário
         return view('beneficiary.validation', ['id'=>$id]);
@@ -65,25 +63,6 @@ class StudentController extends Controller
      */
     public function show(Request $request)
     {
-    //    //redirecionar para a tela de inscrição no evento
-       
-    //     // Busca o usuário pelo ID fornecido na requisição
-    //     $id = $request->input('id');
-    //     $user = User::find($id);
-
-    //     // Verifica se o usuário foi encontrado
-    //     if (!$user) {
-    //         // Se não foi encontrado, exibe uma mensagem de erro
-    //         return view('/beneficiary.show')->with('error', 'Beneficiary user not found with ID: ' . $id);
-    //     }
-
-    //     // Se o usuário foi encontrado, cria a inscrição associada a ele
-    //     // Você pode adicionar o ID do usuário aos dados validados antes de criar a inscrição
-    //     $validatedData['id'] = $user->id;
-    //     $inscription = Inscription::create($validatedData);
-
-    //     // Redireciona com uma mensagem de sucesso se a inscrição for criada com sucesso
-    //    return view('beneficiary.show', ['id'=>$request->input ('id')]);
 
     }
 
