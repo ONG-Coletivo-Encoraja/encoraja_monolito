@@ -10,9 +10,6 @@ use Illuminate\Http\Request;
 
 class VoluntaryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function home()
     {
         return view('voluntary.home');
@@ -23,9 +20,7 @@ class VoluntaryController extends Controller
         return view('voluntary.index', ['users' => $users]);
 
     }
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
         return view('voluntary.create');
@@ -67,10 +62,6 @@ class VoluntaryController extends Controller
         return view('voluntary.inscriptions', ['inscriptions' => $inscriptions]);
     }
 
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
 
@@ -101,25 +92,14 @@ class VoluntaryController extends Controller
         return redirect('/voluntary');
 
     }
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(string $id)
     {
         $user = User::with(['addresses'])->findOrFail($id);
         // dd($user);
         return view('voluntary.edit', ['user' => $user]);
     }
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function update(Request $request, string $id)
     {
         $user = User::with('addresses')->findOrFail($id);
@@ -133,9 +113,7 @@ class VoluntaryController extends Controller
         
         return response()->redirectTo('/voluntary');
     }
-    /**
-     * Remove the specified resource from storage.
-     */
+    
     public function destroy(string $id)
     {
         $user = User::findOrFail($id);
