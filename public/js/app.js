@@ -1,6 +1,10 @@
 function confirmDelete() {
     return confirm('Tem certeza que deseja excluir este evento?');
 }
+function confirmDeleteUser() {
+    return confirm('Tem certeza que deseja excluir este usuário?');
+}
+
 
 $(document).ready(function(){
     $('#cpf').mask('000.000.000-00');

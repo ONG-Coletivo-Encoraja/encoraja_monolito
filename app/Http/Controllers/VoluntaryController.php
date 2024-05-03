@@ -35,6 +35,13 @@ class VoluntaryController extends Controller
     {
         return view('voluntary.createEvent');
     }
+    public function eventsCreate(Request $request)
+    {
+        if(Event::query()->create($request->all())) {
+            return response()->redirectTo('/voluntary/events');
+        }
+    }
+
 
     public function selectEvents()
     {

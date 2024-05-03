@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/voluntary/createEvent', [VoluntaryController::class, 'createEvent']);
 Route::get('/voluntary/events', [VoluntaryController::class, 'selectEvents']);
 Route::get('/voluntary/inscriptions', [VoluntaryController::class, 'viewInscriptions']);
+Route::post('/voluntary/eventsCreate', [VoluntaryController::class, 'eventsCreate']);
 //ROTAS QUE NÃO DERAM CERTO
 // Route::get('/home-adm', [AdministratorController::class, 'home']);
 // Route::get('/home-beneficiary', [BeneficiaryStudentController::class, 'home']);
@@ -55,7 +56,6 @@ Route::get('/voluntary/inscriptions', [VoluntaryController::class, 'viewInscript
 Route::get('/home-admin', [HomeController::class, 'home_admin']);
 Route::get('/home-beneficiary', [HomeController::class, 'home_beneficiary']);
 Route::get('/home-voluntary', [HomeController::class, 'home_voluntary']);
-
 
 
 Route::get('/beneficiary/create/{event}', [InscriptionController::class, 'create']);
