@@ -54,7 +54,7 @@ Route::get('/voluntary/inscriptions', [VoluntaryController::class, 'viewInscript
 //TESTE ROTAS
 Route::get('/home-admin', [HomeController::class, 'home_admin']);
 Route::get('/home-beneficiary', [HomeController::class, 'home_beneficiary']);
-
+Route::get('/home-voluntary', [HomeController::class, 'home_voluntary']);
 
 
 

@@ -90,6 +90,8 @@ class VoluntaryController extends Controller
         $voluntary->permissions()->create([
             'type' => 'voluntary'
         ]);
+        
+        return redirect('/voluntary');
 
     }
     /**
