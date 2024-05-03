@@ -46,7 +46,7 @@
                     <form action="/adm/{{ $user->id }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button class="btn" type="submit" onclick="return confirmDelete()">Apagar</button>
+                        <button class="btn" type="submit" onclick="return confirmDeleteUser()">Apagar</button>
                     </form>
                 </td>
             </tr>
