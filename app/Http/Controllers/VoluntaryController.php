@@ -31,9 +31,9 @@ class VoluntaryController extends Controller
         return view('voluntary.create');
     }
 
-    public function createEvent()
+    public function formEvent()
     {
-        return view('voluntary.createEvent');
+        return view('voluntary.formEvent');
     }
     public function eventsCreate(Request $request)
     {

@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 //     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 // });
 
-Route::get('/voluntary/createEvent', [VoluntaryController::class, 'createEvent']);
+Route::get('/voluntary/formEvent', [VoluntaryController::class, 'formEvent']);
 Route::get('/voluntary/events', [VoluntaryController::class, 'selectEvents']);
 Route::get('/voluntary/inscriptions', [VoluntaryController::class, 'viewInscriptions']);
 Route::post('/voluntary/eventsCreate', [VoluntaryController::class, 'eventsCreate']);

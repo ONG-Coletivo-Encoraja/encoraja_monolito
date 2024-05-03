@@ -10,7 +10,7 @@
 
     <a href="/voluntary/events" class="option-home-admin rounded">Opções de Eventos</a>
 
-    <a href="/voluntary/createEvent" class="option-home-admin rounded">Sugerir Eventos</a>
+    <a href="/voluntary/formEvent" class="option-home-admin rounded">Sugerir Eventos</a>
 
     <a href="/voluntary/inscriptions" class="option-home-admin rounded">Visualisar inscrições</a>
 </div>
