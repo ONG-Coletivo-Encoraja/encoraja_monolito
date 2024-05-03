@@ -3,10 +3,10 @@
 @section('title', 'Encoraja')
 @section('content')
 
-<div>
-    <h1></h1>
-    <br>
-    <table border="1">
+<h1 class="tittle1">Lista de Voluntários</h1>
+
+<div class="users-list">
+    <table border="1" class="table table-striped">
         <thead>
             <th>ID</th>
             <th>Nome</th>
