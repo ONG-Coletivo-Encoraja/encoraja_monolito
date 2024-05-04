@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\Inscription;
 use App\Models\User;
@@ -13,26 +12,32 @@ use Database\Factories\InscriptionFactory;
 class InscriptionTest extends TestCase
 {
     use RefreshDatabase;
-
+    
     public function test_store_method_creates_new_inscription()
-    {
-        // $user = User::factory()->create();
-        // $event = Event::factory()->create();
-
-        // $response = $this->post('/inscriptions', [
-        //     'user_id' => $user->id,
-        //     'event_id' => $event->id,
-        // ]);
-
+{
+        // $user_id = User::factory()->create();
+        // $event_id = Event::factory()->create();
+        // $data = [
+        //     'proof' => 'alala',
+        //     'user_id' => $user_id->id,
+        //     'event_id' => $event_id->id,
+        //     'status' => 'approved',
+        // ];
+        
         $data = InscriptionFactory::new()->make()->toArray();
-        $inscription = Inscription::factory()->create($data);
-        $this->assertInstanceOf(Inscription::class, $inscription);
 
-        // $response->assertRedirect('/beneficiary');
-        // $this->assertDatabaseHas('inscriptions', [
-        //     'user_id' => $user->id,
-        //     'event_id' => $event->id,
-        // ]);
+
+        $inscription = Inscription::factory()->create($data);
+
+
+        $this->assertInstanceOf(Inscription::class, $inscription);
+        $this->assertDatabaseHas('inscription', $data);
+        // $this->assertEquals($inscription['proof'], $inscription->proof);
+        // $this->assertEquals($user_id->id, $inscription->user_id);
+        // $this->assertEquals($event_id->id, $inscription->event_id);
+        // $this->assertEquals($inscription['status'], $inscription->status);
+
+
     }
 
     public function test_update_method_updates_inscription()

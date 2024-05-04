@@ -30,7 +30,7 @@ class BeneficiaryStudentFactory extends Factory
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
-            'password' => static::$password ??= Hash::make('password'),
+            'password' => fake()->password(),
             'cpf' => fake()->numerify('###.###.###-##'),
             'date_birthday' =>  fake()->date(),
             'image_term' => true,
@@ -38,3 +38,4 @@ class BeneficiaryStudentFactory extends Factory
         ];
     }
 }
+

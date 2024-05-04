@@ -2,34 +2,30 @@
 
 namespace Database\Factories;
 
-use App\Models\Inscription;
+use App\Models\User;
+use App\Models\Event;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Inscription;
 
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Permission>
+ */
 class InscriptionFactory extends Factory
 {
     /**
-     * The name of the factory's corresponding model.
+     * Define the model's default state.
      *
-     * @var string
+     * @return array<string, mixed>
      */
     protected $model = Inscription::class;
 
-    /**
-     * Define the model's default state.
-     *
-     * @return array
-     */
     public function definition()
     {
         return [
-            'proof' => fake()->name(),
-            'user_id' => function () {
-                return \App\Models\User::factory()->create()->id;
-            },
-            'event_id' => function () {
-                return \App\Models\Event::factory()->create()->id;
-            },
-            'status' => $this->faker->randomElement(['pending', 'approved', 'rejected']),
+            'proof' => $this->faker->name(),
+            'user_id' => User::factory(),
+            'event_id' => Event::factory(),
+            'status' => $this->faker->randomElement(['approved', 'pending', 'rejected']),
         ];
     }
 }
