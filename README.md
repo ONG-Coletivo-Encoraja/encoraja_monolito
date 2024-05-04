@@ -5,7 +5,7 @@ Esse repositório contém o desenvolvimento do Projeto Integrador do Tecnólogo 
 ## Link para a apresentação do projeto
 
 ```
-Por o link aqui
+https://www.canva.com/design/DAGEI7Y5cvw/pHpUxzp4sSLAXnUL3Xc_XA/watch
 ```
 
 # Tecnologias
