@@ -8,16 +8,12 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InscriptionController;
 use Illuminate\Support\Facades\Route;
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-// // Rotas que precisam de autenticação padrão BREEZE
-// Route::middleware('auth')->group(function () {
-//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-// });
+// Rotas que precisam de autenticação padrão BREEZE
+
 
 Route::get('/voluntary/formEvent', [VoluntaryController::class, 'formEvent']);
 Route::get('/voluntary/events', [VoluntaryController::class, 'selectEvents']);
@@ -46,6 +42,13 @@ Route::resource('/voluntary', VoluntaryController::class);
 
 Route::resource('/inscriptions', InscriptionController::class);
 
+Route::resource('/', HomeController::class);
 
+// Route::middleware('auth')->group(function () {
+//     // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//     // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//     // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    
+// });
 
 require __DIR__.'/auth.php';
