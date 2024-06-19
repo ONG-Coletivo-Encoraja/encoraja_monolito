@@ -49,6 +49,10 @@ class RegisteredUserController extends Controller
             'data_term' => $request->has('data_term'),
         ]);
 
+        $user->permissions()->create([
+            'type' => 'beneficiary'
+        ]);
+
         event(new Registered($user));
 
         Auth::login($user);

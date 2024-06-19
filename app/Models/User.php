@@ -56,6 +56,10 @@ class User extends Authenticatable
     public function permissions(){
         return $this->hasMany(Permission::class);
     }
+    public function hasPermission($type)
+    {   
+        return $this->permissions->contains('type', $type);
+    }
     public function addresses(){
         return $this->hasMany(Address::class);
     }
