@@ -13,11 +13,11 @@ class PermissionPolicy
 
     public function viewVoluntary(User $user)
     {
-        return $user->hasPermission('voluntary') || $user->hasPermission('administrator');
+        return $user->hasPermission('voluntary');
     }
 
     public function viewBeneficiary(User $user)
     {
-        return $user->hasPermission('beneficiary') || $user->hasPermission('administrator') || $user->hasPermission('voluntary');
+        return $user->hasPermission('beneficiary');
     }
 }

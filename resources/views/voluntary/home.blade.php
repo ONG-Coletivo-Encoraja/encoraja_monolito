@@ -6,7 +6,7 @@
 <h1 class="tittle">Opções de voluntário</h1>
 
 <div class="options-home-admin">
-    <a href="/voluntary/create" class="option-home-admin rounded">Efetuar cadastro</a>
+    {{-- <a href="/voluntary/create" class="option-home-admin rounded">Efetuar cadastro</a> --}}
 
     <a href="/voluntary/events" class="option-home-admin rounded">Opções de Eventos</a>
 

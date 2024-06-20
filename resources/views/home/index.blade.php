@@ -6,17 +6,19 @@
 <h1 class="tittle">Escolha um tipo de usuário</h1>
 
 <div class="options-user">
-    @can('viewAdmin', $user)
-        <a href="/home-admin" class="choose-user rounded">Administrador</a>
-    @endcan
-
-    @can('viewVoluntary', $user)
-        <a href="/home-voluntary" class="choose-user rounded">Voluntário</a>
-    @endcan
-
-    @can('viewBeneficiary', $user)
+    
+    @if(Auth::user()->can('viewAdmin', $user) || Auth::user()->can('viewVoluntary', $user) || Auth::user()->can('viewBeneficiary', $user))
         <a href="/home-beneficiary" class="choose-user rounded">Beneficiário</a>
-    @endcan
+    @endif
+    
+    @if(Auth::user()->can('viewAdmin', $user) || Auth::user()->can('viewVoluntary', $user))
+        <a href="/home-voluntary" class="choose-user rounded">Voluntário</a>
+    @endif
+
+    @if(Auth::user()->can('viewAdmin', $user))
+        <a href="/home-admin" class="choose-user rounded">Administrador</a>
+    @endif
+
 </div>
 
 @endsection

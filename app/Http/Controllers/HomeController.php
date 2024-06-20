@@ -13,6 +13,7 @@ class HomeController extends Controller
     public function index() {
         $events = Event::all();
         $user = Auth::user();
+
         return view('home.index', compact('events', 'user'));
     }
     
