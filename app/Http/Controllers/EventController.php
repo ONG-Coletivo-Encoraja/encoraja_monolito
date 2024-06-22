@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Event;
-
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
@@ -13,12 +14,18 @@ class EventController extends Controller
      */
     public function index()
     {
-        $search = request('search');
+        // $search = request('search');
+        $user = User::find(Auth::id());
 
         $event = new Event;
-        $events = $event->search_event_by_name($search);
+        // $events = $event->search_event_by_name($search);
+        $events = Event::All();
+        
+        if ($user->permissions()->first()->type == 'beneficiary') {
+            $events = Event::where('status', '=', 'Active')->get();
+        }
 
-        return view('events.index', ['events' => $events, 'search' => $search]);
+        return view('events.index', ['events' => $events, 'user' => $user]);
     }
 
     /**
@@ -26,7 +33,8 @@ class EventController extends Controller
      */
     public function create()
     {
-        return view('events.create');
+        $user = User::find(Auth::id());
+        return view('events.create', ['user' => $user]);
     }
 
     /**

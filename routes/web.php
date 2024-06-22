@@ -16,16 +16,16 @@ Route::middleware('auth')->group(function () {
     // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/voluntary/formEvent', [VoluntaryController::class, 'formEvent']);
-    Route::get('/voluntary/events', [VoluntaryController::class, 'selectEvents']);
-    Route::get('/voluntary/inscriptions', [VoluntaryController::class, 'viewInscriptions']);
-    Route::post('/voluntary/eventsCreate', [VoluntaryController::class, 'eventsCreate']);
+    // Route::get('/voluntary/events', [VoluntaryController::class, 'selectEvents']);
+    // Route::get('/voluntary/inscriptions', [VoluntaryController::class, 'viewInscriptions']);
+    // Route::post('/voluntary/eventsCreate', [VoluntaryController::class, 'eventsCreate']);
 
     ///////////////////////////////
     Route::get('/home-user', [HomeController::class, 'changeTypeUser']);
 
 
     Route::get('/beneficiary/create/{event}', [InscriptionController::class, 'create']);
-    Route::get('/beneficiary/inscriptions', [InscriptionController::class, 'show_user_inscriptions']);
+    // Route::get('/beneficiary/inscriptions', [InscriptionController::class, 'show_user_inscriptions']);
     Route::get('/beneficiary/cancel/{inscription_id}', [StudentController::class, 'cancel_inscription']);
 
     Route::resource('/beneficiary', StudentController::class);

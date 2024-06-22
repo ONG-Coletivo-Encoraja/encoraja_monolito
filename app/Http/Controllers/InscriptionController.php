@@ -9,6 +9,9 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\User;
 use App\Models\Event;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\QueryException;
+
 
 class InscriptionController extends Controller
 {
@@ -18,20 +21,25 @@ class InscriptionController extends Controller
     //teve alterações
     public function index()
     {
-        $search = request('search');
+        $user = User::find(Auth::id());
 
-        $inscriptions = Inscription::with(['user','event']);
-
-        if ($search) {
-            $inscriptions->whereHas('user', function ($query) use ($search) {
-                $query->where('name', 'like', '%' . $search . '%');
-            })->orWhereHas('event', function ($query) use ($search) {
-                $query->where('name', 'like', '%' . $search . '%');
-            });
+        if ($user->permissions()->first()->type == 'beneficiary') {
+            $inscriptions = $this->beneficiary_inscriptions();
+        } else {
+            $inscriptions = Inscription::All();
         }
-        $inscriptions = $inscriptions->get();
+
+        // $search = request('search');
+
+        // if ($search) {
+        //     $inscriptions->whereHas('user', function ($query) use ($search) {
+        //         $query->where('name', 'like', '%' . $search . '%');
+        //     })->orWhereHas('event', function ($query) use ($search) {
+        //         $query->where('name', 'like', '%' . $search . '%');
+        //     });
+        // }
         
-        return view('inscriptions.index', ['inscriptions' => $inscriptions]);
+        return view('inscriptions.index', ['inscriptions' => $inscriptions, 'user' => $user]);
     }
     
     /**
@@ -48,18 +56,6 @@ class InscriptionController extends Controller
      */
     public function store(Request $request)
     {
-    //     $event_id = $request->input('event_id');
-    //     $user_id = $request->input('user_id');
-
-    //     $inscription = Inscription::create([
-    //         'proof' => 'lalal',
-    //         'status' => 'pending',
-    //         'event_id' => ($event_id),
-    //         'user_id' => ($user_id)
-    //     ]);
-
-    //     return redirect('/beneficiary');
-
         $event_id = $request->input('event_id');
         $user_id = $request->input('user_id');
 
@@ -91,30 +87,26 @@ class InscriptionController extends Controller
 
         // Redirecione para onde quiser após a criação bem-sucedida da inscrição
         return redirect('/beneficiary');
-
     }
 
-    public function show_user_inscriptions()
+    public function beneficiary_inscriptions()
     {
-        $search = request('search');
+        $user = Auth::id();
         
-        if($search){
-            $inscriptions = Inscription::with('user', 'event')->where([
-                ['user_id','like', '%'.$search.'%']
-            ])->get();
-        }else{
-            $inscriptions = [];
-        }
+        $inscriptions = Inscription::with('user', 'event')->where([
+            ['user_id','like', '%'.$user.'%']
+        ])->get();
 
-        return view('beneficiary.inscriptions', ['inscriptions' => $inscriptions]);
+        return $inscriptions;
     }
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
+        $user = Auth::user();
         $inscription = Inscription::with(['user','event'])->findOrFail($id);
-        return view('inscriptions.edit', ['inscription' => $inscription]);
+        return view('inscriptions.edit', ['inscription' => $inscription, 'user' => $user]);
     }
 
     /**
@@ -122,10 +114,16 @@ class InscriptionController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $inscription = Inscription::findOrFail($id);
-        $inscription->update($request->all());
+        try {
+            $inscription = Inscription::findOrFail($id);
+            $inscription->update($request->all());
 
-        return response()->redirectTo('/inscriptions');
+            return response()->redirectTo('/inscriptions');
+        } catch (QueryException $e) {
+            if ($e) {
+                return back()->withInput()->withErrors(['email' => 'O email fornecido já está em uso. Tente novamente!']);
+            }
+        }
     }
 
     /**

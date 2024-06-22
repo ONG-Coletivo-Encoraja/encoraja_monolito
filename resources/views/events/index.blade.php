@@ -16,7 +16,9 @@
                 </svg>
             </button>
 
-            <a href="/events/create" class="btn-search rounded btn-form">Criar evento</a>
+            @if (Auth::user()->can('viewVoluntary', $user) || Auth::user()->can('viewAdmin', $user))
+                    <a href="/events/create" class="btn-search rounded btn-form">Criar evento</a>   
+            @endif
 
         </form>
     </div>
@@ -41,35 +43,48 @@
         </thead>
         <tbod>
             @foreach($events as $event)
-            <tr>
-                <td>{{$event->id}}</td>
-                <td>{{$event->name}}</td>
-                <td>{{$event->description}}</td>
-                <td>{{$event->date}}</td>
-                <td>{{$event->time}}</td>
-                <td>{{$event->modality}}</td>
-                <td>{{$event->status}}</td>
-                <td>{{$event->type}}</td>
-                <td>{{$event->target_audience}}</td>
-                <td>{{$event->vacancies}}</td>
-                <td>{{$event->social_vacancies}}</td>
-                <td>{{$event->regular_vacancies}}</td>
-                <td>{{$event->material}}</td>
-                <td>{{$event->interest_area}}</td>
-                <td>{{$event->price}}</td>
-                <td class="actions-form">
-                        <form action="/events/{{ $event->id }}/edit" method="GET">
-                            @csrf
-                            @method('GET')
-                            <button class="btn" type="submit">Editar</button>
-                        </form>
-                        <form action="/events/{{ $event->id }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn" type="submit" onclick="return confirmDelete()">Apagar</button>
-                        </form>
-                </td>
-            </tr>
+                <tr>
+                    <td>{{$event->id}}</td>
+                    <td>{{$event->name}}</td>
+                    <td>{{$event->description}}</td>
+                    <td>{{$event->date}}</td>
+                    <td>{{$event->time}}</td>
+                    <td>{{$event->modality}}</td>
+                    <td>{{$event->status}}</td>
+                    <td>{{$event->type}}</td>
+                    <td>{{$event->target_audience}}</td>
+                    <td>{{$event->vacancies}}</td>
+                    <td>{{$event->social_vacancies}}</td>
+                    <td>{{$event->regular_vacancies}}</td>
+                    <td>{{$event->material}}</td>
+                    <td>{{$event->interest_area}}</td>
+                    <td>{{$event->price}}</td>
+                    <td class="actions-form">
+                        @if (Auth::user()->can('viewVoluntary', $user) || Auth::user()->can('viewAdmin', $user))
+                            <form action="/events/{{ $event->id }}/edit" method="GET">
+                                @csrf
+                                @method('GET')
+                                <button class="btn" type="submit">Editar</button>
+                            </form>
+                        @endif
+
+                        @if (Auth::user()->can('viewAdmin', $user))
+                            <form action="/events/{{ $event->id }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn" type="submit" onclick="return confirmDelete()">Apagar</button>
+                            </form>
+                        @endif
+
+                        @can('viewBeneficiary', $user)
+                            <form action="/beneficiary/create/{{ $event->id }}" method="GET">
+                                @csrf
+                                @method('GET')
+                                <button class="btn" type="submit">Se Inscrever</button>
+                            </form> 
+                        @endcan
+                    </td>
+                </tr>
             @endforeach
         </tbod>
     </table>

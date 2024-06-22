@@ -13,9 +13,9 @@
         <div class="options-home-admin">
             {{-- <a href="/beneficiary/create" class="option-home-admin rounded">Se cadastre aqui</a> --}}
         
-            <a href="/beneficiary" class="option-home-admin rounded">Opções de Eventos</a>
+            <a href="/events" class="option-home-admin rounded">Opções de Eventos</a>
         
-            <a href="/beneficiary/inscriptions" class="option-home-admin rounded">Minhas inscrições</a>
+            <a href="/inscriptions" class="option-home-admin rounded">Minhas inscrições</a>
         </div>
     @endif
     
@@ -25,11 +25,12 @@
         <div class="options-home-admin">
             {{-- <a href="/voluntary/create" class="option-home-admin rounded">Efetuar cadastro</a> --}}
         
-            <a href="/voluntary/events" class="option-home-admin rounded">Opções de Eventos</a>
+            <a href="/events" class="option-home-admin rounded">Opções de Eventos</a>
         
-            <a href="/voluntary/formEvent" class="option-home-admin rounded">Sugerir Eventos</a>
+            <a href="/events/create" class="option-home-admin rounded">Sugerir Eventos</a>
         
-            <a href="/voluntary/inscriptions" class="option-home-admin rounded">Visualisar inscrições</a>
+            {{-- <a href="/voluntary/inscriptions" class="option-home-admin rounded">Visualisar inscrições</a> --}}
+            <a href="/inscriptions" class="option-home-admin rounded">Visualisar inscrições</a>
         </div>
     @endif
 
@@ -37,12 +38,12 @@
         <h1 class="tittle">Opções de administrador</h1>
 
         <div class="options-home-admin">
-            <details class="option-home-admin rounded">
+            {{-- <details class="option-home-admin rounded">
                 <summary style="list-style: none;">Cadastrar usuários</summary>
                 <a href="/adm/create" class="detail-option">Cadastrar administrador</a><br>
                 <a href="/voluntary/create" class="detail-option">Cadastrar voluntário</a><br>
                 <a href="/beneficiary/create" class="detail-option">Cadastrar beneficiario</a><br>
-            </details>
+            </details> --}}
         
             <a href="/adm" class="option-home-admin rounded">Visualisar todos os usuários</a>
         

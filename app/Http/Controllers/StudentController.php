@@ -14,8 +14,8 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $events = Event::where('status', '=', 'Active')->get();
-        return view('beneficiary.index', ['events' => $events]);
+        // $events = Event::where('status', '=', 'Active')->get();
+        // return view('beneficiary.index', ['events' => $events]);
     }
 
     /**
@@ -23,7 +23,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return view('beneficiary.create');
+        // return view('beneficiary.create');
     }
 
     /**
