@@ -25,6 +25,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/home-beneficiary', [HomeController::class, 'home_beneficiary']);
     Route::get('/home-voluntary', [HomeController::class, 'home_voluntary']);
 
+    ///////////////////////////////
+    Route::get('/home-user', [HomeController::class, 'changeTypeUser']);
+
 
     Route::get('/beneficiary/create/{event}', [InscriptionController::class, 'create']);
     Route::get('/beneficiary/inscriptions', [InscriptionController::class, 'show_user_inscriptions']);

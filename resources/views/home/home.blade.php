@@ -1,32 +1,57 @@
-{{--!@extends('layouts.main')
+@extends('layouts.main')
+
 @section('title', 'Encoraja')
 @section('content')
 
+<h1 class="tittle">Escolha um tipo de usuário</h1>
 
-@if(request()->segment(2) == 'admin')
-    <details>
-        <summary>Cadastrar usuários</summary>
-        <a href="/adm/create">Cadastrar administrador</a><br>
-        <a href="">Cadastrar voluntário</a><br>
-        <a href="/beneficiary/create">Cadastrar beneficiario</a><br>
-    </details>
-    <br><br><br>
-    <a href="/adm">Visualisar todos os usuários</a>
-    <br><br><br>
-    <a href="/events">Opções de Eventos</a>
-    <br><br><br>
-    <a href="/inscriptions">Opções de inscrições</a>
+<div class="options-user">
+    
+    @if(Auth::user()->can('viewBeneficiary', $user))
+        <h1 class="tittle">Opções de beneficiário</h1>
 
-@elseif(request()->segment(2) == 'beneficiary')
-    <details>
-        <summary>Cadastrar usuário</summary>
-        <a href="/beneficiary/create">Se Cadastrar</a><br>
-    </details>
-    <br><br><br>
-    <a href="/beneficiary/event_details">Opções de Eventos</a>
-    <br><br><br>
-    <a href="/inscriptions">Opções de inscrições</a>
-@endif
+        <div class="options-home-admin">
+            {{-- <a href="/beneficiary/create" class="option-home-admin rounded">Se cadastre aqui</a> --}}
+        
+            <a href="/beneficiary" class="option-home-admin rounded">Opções de Eventos</a>
+        
+            <a href="/beneficiary/inscriptions" class="option-home-admin rounded">Minhas inscrições</a>
+        </div>
+    @endif
+    
+    @if(Auth::user()->can('viewVoluntary', $user))
+        <h1 class="tittle">Opções de voluntário</h1>
+
+        <div class="options-home-admin">
+            {{-- <a href="/voluntary/create" class="option-home-admin rounded">Efetuar cadastro</a> --}}
+        
+            <a href="/voluntary/events" class="option-home-admin rounded">Opções de Eventos</a>
+        
+            <a href="/voluntary/formEvent" class="option-home-admin rounded">Sugerir Eventos</a>
+        
+            <a href="/voluntary/inscriptions" class="option-home-admin rounded">Visualisar inscrições</a>
+        </div>
+    @endif
+
+    @if(Auth::user()->can('viewAdmin', $user))
+        <h1 class="tittle">Opções de administrador</h1>
+
+        <div class="options-home-admin">
+            <details class="option-home-admin rounded">
+                <summary style="list-style: none;">Cadastrar usuários</summary>
+                <a href="/adm/create" class="detail-option">Cadastrar administrador</a><br>
+                <a href="/voluntary/create" class="detail-option">Cadastrar voluntário</a><br>
+                <a href="/beneficiary/create" class="detail-option">Cadastrar beneficiario</a><br>
+            </details>
+        
+            <a href="/adm" class="option-home-admin rounded">Visualisar todos os usuários</a>
+        
+            <a href="/events" class="option-home-admin rounded">Opções de Eventos</a>
+        
+            <a href="/inscriptions" class="option-home-admin rounded">Opções de inscrições</a>
+        </div>
+    @endif
+
+</div>
 
 @endsection
-!--}}
