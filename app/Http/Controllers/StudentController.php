@@ -32,30 +32,30 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         
-        $beneficiary = User::create([
-            'name' => $request->input('name'),
-            'email' =>  $request->input('email'),
-            'date_birthday' =>  $request->input('date_birthday'),
-            'cpf' =>  $request->input('cpf'),
-            'password' =>  $request->input('password'),
-        ]);
+        // $beneficiary = User::create([
+        //     'name' => $request->input('name'),
+        //     'email' =>  $request->input('email'),
+        //     'date_birthday' =>  $request->input('date_birthday'),
+        //     'cpf' =>  $request->input('cpf'),
+        //     'password' =>  $request->input('password'),
+        // ]);
 
-        $beneficiary->addresses()->create([
-            'street' =>  $request->input('street'),
-            'number' =>  $request->input('number'),
-            'neighbourhood' =>  $request->input('neighbourhood'),
-            'city' => $request->input('city'),
-            'zip_code' => $request->input('zip_code')
-        ]);
+        // $beneficiary->addresses()->create([
+        //     'street' =>  $request->input('street'),
+        //     'number' =>  $request->input('number'),
+        //     'neighbourhood' =>  $request->input('neighbourhood'),
+        //     'city' => $request->input('city'),
+        //     'zip_code' => $request->input('zip_code')
+        // ]);
 
-        $beneficiary->permissions()->create([
-            'type' => 'beneficiary'
-        ]);
+        // $beneficiary->permissions()->create([
+        //     'type' => 'beneficiary'
+        // ]);
 
-        $id = $beneficiary->id;
+        // $id = $beneficiary->id;
 
-        //redirecionando para a tela de confirmação com o codigo de cadastro do usuário
-        return view('beneficiary.validation', ['id'=>$id]);
+        // //redirecionando para a tela de confirmação com o codigo de cadastro do usuário
+        // return view('beneficiary.validation', ['id'=>$id]);
     }
 
     /**

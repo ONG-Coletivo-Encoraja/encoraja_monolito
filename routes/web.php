@@ -20,11 +20,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/voluntary/inscriptions', [VoluntaryController::class, 'viewInscriptions']);
     Route::post('/voluntary/eventsCreate', [VoluntaryController::class, 'eventsCreate']);
 
-    //TESTE ROTAS
-    Route::get('/home-admin', [HomeController::class, 'home_admin']);
-    Route::get('/home-beneficiary', [HomeController::class, 'home_beneficiary']);
-    Route::get('/home-voluntary', [HomeController::class, 'home_voluntary']);
-
     ///////////////////////////////
     Route::get('/home-user', [HomeController::class, 'changeTypeUser']);
 
