@@ -59,17 +59,14 @@ class InscriptionController extends Controller
         $eventId = $request->input('eventId');
         $user = User::find(Auth::id());
 
-        // Verifique se o usuário já possui uma inscrição para este evento
         $existingInscription = Inscription::where('event_id', $eventId)
             ->where('user_id', $user->id)
             ->first();
 
         if ($existingInscription) {
-            // Se o usuário já estiver inscrito neste evento, retorne uma mensagem de erro
             return redirect()->back()->with('error', 'Este usuário já está inscrito neste evento.');
         }
 
-        // Caso contrário, crie a nova inscrição
         $inscription = Inscription::create([
             'proof' => 'lalal',
             'status' => 'pending',
@@ -77,19 +74,7 @@ class InscriptionController extends Controller
             'user_id' => $user->id
         ]);
 
-        // Redirecione para onde quiser após a criação bem-sucedida da inscrição
         return redirect('/inscriptions');
-    }
-
-    public function beneficiary_inscriptions()
-    {
-        $user = Auth::id();
-        
-        $inscriptions = Inscription::with('user', 'event')->where([
-            ['user_id','like', '%'.$user.'%']
-        ])->get();
-
-        return $inscriptions;
     }
     /**
      * Show the form for editing the specified resource.
@@ -128,5 +113,16 @@ class InscriptionController extends Controller
         $inscription->delete();
 
         return redirect('/inscriptions');
+    }
+
+    public function beneficiary_inscriptions()
+    {
+        $user = Auth::id();
+        
+        $inscriptions = Inscription::with('user', 'event')->where([
+            ['user_id','like', '%'.$user.'%']
+        ])->get();
+
+        return $inscriptions;
     }
 }

@@ -37,6 +37,12 @@ class RegisteredUserController extends Controller
             'date_birthday' => ['required'],
             'image_term' => ['required'],
             'data_term' => ['required'],
+
+            'street' => ['required', 'string'],
+            'number' => ['required', 'numeric'],
+            'neighbourhood' => ['required', 'string'],
+            'city' => ['required', 'string'],
+            'zip_code' => ['required', 'string', 'max:10'],
         ]);
 
         $user = User::create([
@@ -51,6 +57,14 @@ class RegisteredUserController extends Controller
 
         $user->permissions()->create([
             'type' => 'beneficiary'
+        ]);
+
+        $user->addresses()->create([
+            'street' => $request->street,
+            'number' => $request->number,
+            'neighbourhood' => $request->neighbourhood,
+            'city' => $request->city,
+            'zip_code' => $request->zip_code,
         ]);
 
         event(new Registered($user));

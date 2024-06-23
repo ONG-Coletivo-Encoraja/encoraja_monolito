@@ -51,7 +51,42 @@
 
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
-        
+
+        <!-- Zip code -->
+        <div class="mt-4">
+            <x-input-label for="zip_code" :value="__('CEP')" />
+            <x-text-input id="zip_code" class="block mt-1 w-full" type="text" name="zip_code" :value="old('zip_code')" required autofocus autocomplete="zip_code" />
+            <x-input-error :messages="$errors->get('zip_code')" class="mt-2" />
+        </div>
+
+        <!-- City -->
+        <div class="mt-4">
+            <x-input-label for="city" :value="__('Cidade')" />
+            <x-text-input id="city" class="block mt-1 w-full" type="text" name="city" :value="old('city')" required autofocus autocomplete="city" />
+            <x-input-error :messages="$errors->get('city')" class="mt-2" />
+        </div>
+            
+        <!-- Neighbourhood -->
+        <div class="mt-4">
+            <x-input-label for="neighbourhood" :value="__('Bairro')" />
+            <x-text-input id="neighbourhood" class="block mt-1 w-full" type="text" name="neighbourhood" :value="old('neighbourhood')" required autofocus autocomplete="neighbourhood" />
+            <x-input-error :messages="$errors->get('neighbourhood')" class="mt-2" />
+        </div>
+
+        <!-- Street -->
+        <div class="mt-4">
+            <x-input-label for="street" :value="__('Rua')" />
+            <x-text-input id="street" class="block mt-1 w-full" type="text" name="street" :value="old('street')" required autofocus autocomplete="street" />
+            <x-input-error :messages="$errors->get('street')" class="mt-2" />
+        </div>
+
+        <!-- Street number -->
+        <div class="mt-4">
+            <x-input-label for="number" :value="__('Número')" />
+            <x-text-input id="number" class="block mt-1 w-full" type="number" name="number" :value="old('number')" required autofocus autocomplete="number" />
+            <x-input-error :messages="$errors->get('number')" class="mt-2" />
+        </div>
+
         <!-- Image Term -->
         <div class="mt-4 flex flex-row">
             <x-text-input id="image_term" class="block mt-1 mr-1 " type="checkbox" name="image_term" :value="old('image_term')" required autocomplete="image_term" />
