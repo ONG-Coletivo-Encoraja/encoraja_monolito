@@ -9,22 +9,23 @@
         @method('PUT')
         <div class="col-md-6">
             <label for="name" class="form-label">Nome</label>
-            <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}" >
-        </div>
+            <input type="text" class="form-control" id="name" name="name" value="{{ old('name', $user->name) }}" >
+            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+        </div>  
         <div class="col-md-6">
             <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}" required >
-            @error('email')
-            <div class="alert alert-danger">{{ $message }}</div>
-            @enderror
+            <input type="email" class="form-control" id="email" name="email" value="{{ old('name', $user->email) }}"  readonly >
+            <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
         <div class="col-md-6">
             <label for="date_birthday" class="form-label">Data de nascimento</label>
-            <input type="date" class="form-control" id="date_birthday" name="date_birthday" value="{{ $user->date_birthday }}" >
+            <input type="date" class="form-control" id="date_birthday" name="date_birthday" value="{{ old('name', $user->date_birthday) }}" >
+            <x-input-error :messages="$errors->get('date_birthday')" class="mt-2" />
         </div>
         <div class="col-md-6">
             <label for="cpf" class="form-label">CPF</label>
-            <input type="cpf" class="form-control" id="cpf" name="cpf" value="{{ $user->cpf }}" required >
+            <input type="cpf" class="form-control" id="cpf" name="cpf" value="{{ old('name', $user->cpf) }}" required >
+            <x-input-error :messages="$errors->get('cpf')" class="mt-2" />
         </div>
         @foreach($user->permissions as $permission)
             <div class="col-md-4">
@@ -37,7 +38,7 @@
                     </select>
                 @endcan
                 @cannot('viewAdmin', $user)
-                    <input type="text" class="form-control" id="type" name="type" value="{{ $permission->type }}" required readonly>
+                    <input type="text" class="form-control" id="type" name="type" value="{{ old('name', $user->type) }}" required readonly>
                 @endcannot
             </div>
         @endforeach
@@ -45,42 +46,51 @@
         @foreach($user->addresses as $address)
             <div class="col-md-6">
                 <label for="street" class="form-label">Rua</label>
-                <input type="text" class="form-control" id="street" name="street"  value="{{ $address->street }}" required >
+                <input type="text" class="form-control" id="street" name="street"  value="{{ old('name', $address->street) }}" required >
+                <x-input-error :messages="$errors->get('street')" class="mt-2" />
             </div>
             <div class="col-md-6">
                 <label for="number" class="form-label">Número</label>
-                <input type="text" class="form-control" id="number" name="number"  value="{{ $address->number }}" required >
+                <input type="text" class="form-control" id="number" name="number"  value="{{ old('name', $address->number) }}" required >
+                <x-input-error :messages="$errors->get('number')" class="mt-2" />
             </div>
             <div class="col-md-6">
                 <label for="neighbourhood" class="form-label">Bairro</label>
-                <input type="text" class="form-control" id="neighbourhood" name="neighbourhood" value="{{ $address->neighbourhood }}" required >
+                <input type="text" class="form-control" id="neighbourhood" name="neighbourhood" value="{{ old('name', $address->neighbourhood) }}" required >
+                <x-input-error :messages="$errors->get('neighbourhood')" class="mt-2" />
             </div>
             <div class="col-md-6">
                 <label for="city" class="form-label">Cidade</label>
-                <input type="text" class="form-control" id="city" name="city"  value="{{ $address->city }}" required >
+                <input type="text" class="form-control" id="city" name="city"  value="{{ old('name',$address->city) }}" required >
+                <x-input-error :messages="$errors->get('city')" class="mt-2" />
             </div>
             <div class="col-md-6">
                 <label for="zip_code" class="form-label">CEP</label>
-                <input type="text" class="form-control" id="zip_code" name="zip_code"  value="{{ $address->zip_code }}" required >
+                <input type="text" class="form-control" id="zip_code" name="zip_code"  value="{{ old('name',$address->zip_code) }}" required >
+                <x-input-error :messages="$errors->get('zip_code')" class="mt-2" />
             </div>
         @endforeach
 
         @can('viewVoluntary', $user)
             <div class="col-md-6">
                 <label for="availability" class="form-label">Disponibilidade</label>
-                <input type="text" class="form-control" id="availability" name="availability" value="{{ $user->availability }}" required >
+                <input type="text" class="form-control" id="availability" name="availability" value="{{ old('name',$user->availability) }}" required >
+                <x-input-error :messages="$errors->get('availability')" class="mt-2" />
             </div>
             <div class="col-md-6">
                 <label for="course_experience" class="form-label">Experiência</label>
-                <input type="text" class="form-control" id="course_experience" name="course_experience" value="{{ $user->course_experience }}" required > 
+                <input type="text" class="form-control" id="course_experience" name="course_experience" value="{{ old('name',$user->course_experience) }}" required > 
+                <x-input-error :messages="$errors->get('course_experience')" class="mt-2" />
             </div>
             <div class="col-md-6">
                 <label for="how_know" class="form-label">Como soube</label>
-                <input type="text" class="form-control" id="how_know" name="how_know" required value="{{ $user->how_know }}" >
+                <input type="text" class="form-control" id="how_know" name="how_know" required value="{{ old('name',$user->how_know) }}" >
+                <x-input-error :messages="$errors->get('how_know')" class="mt-2" />
             </div>
             <div class="col-md-6">
                 <label for="expectations" class="form-label">Espectativas</label>
-                <input type="text" class="form-control" id="expectations" name="expectations"  value="{{ $user->expectations}}"required >
+                <input type="text" class="form-control" id="expectations" name="expectations"  value="{{ old('name',$user->expectations) }}"required >
+                <x-input-error :messages="$errors->get('expectations')" class="mt-2" />
             </div>
         @endcan
 
