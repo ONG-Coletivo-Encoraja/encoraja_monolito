@@ -13,7 +13,7 @@
         </div>
         <div class="col-md-6">
             <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}" required>
+            <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}" required readonly>
             @error('email')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
@@ -24,11 +24,7 @@
         </div>
         <div class="col-md-6">
             <label for="cpf" class="form-label">CPF</label>
-            <input type="cpf" class="form-control" id="cpf" name="cpf" value="{{ $user->cpf }}" required>
-        </div>
-        <div class="col-md-6">
-            <label for="password" class="form-label">Senha</label>
-            <input type="password" class="form-control" id="password" name="password" value="{{ $user->password }}" readonly>
+            <input type="cpf" class="form-control" id="cpf" name="cpf" value="{{ $user->cpf }}" required readonly>
         </div>
         @foreach($user->permissions as $permission)
             <div class="col-md-4">
@@ -40,36 +36,53 @@
                 </select>
             </div>
         @endforeach
+
         @foreach($user->addresses as $address)
             <div class="col-md-6">
                 <label for="street" class="form-label">Rua</label>
-                <input type="text" class="form-control" id="street" name="street"  value="{{ $address->street }}" required>
+                <input type="text" class="form-control" id="street" name="street"  value="{{ $address->street }}" required readonly>
             </div>
             <div class="col-md-6">
                 <label for="number" class="form-label">Número</label>
-                <input type="text" class="form-control" id="number" name="number"  value="{{ $address->number }}" required>
+                <input type="text" class="form-control" id="number" name="number"  value="{{ $address->number }}" required readonly>
             </div>
             <div class="col-md-6">
                 <label for="neighbourhood" class="form-label">Bairro</label>
-                <input type="text" class="form-control" id="neighbourhood" name="neighbourhood" value="{{ $address->neighbourhood }}" required>
+                <input type="text" class="form-control" id="neighbourhood" name="neighbourhood" value="{{ $address->neighbourhood }}" required readonly>
             </div>
             <div class="col-md-6">
                 <label for="city" class="form-label">Cidade</label>
-                <input type="text" class="form-control" id="city" name="city"  value="{{ $address->city }}" required>
+                <input type="text" class="form-control" id="city" name="city"  value="{{ $address->city }}" required readonly>
             </div>
             <div class="col-md-6">
                 <label for="zip_code" class="form-label">CEP</label>
-                <input type="text" class="form-control" id="zip_code" name="zip_code"  value="{{ $address->zip_code }}" required>
+                <input type="text" class="form-control" id="zip_code" name="zip_code"  value="{{ $address->zip_code }}" required readonly>
             </div>
         @endforeach
-        <div>
-            <input type="checkbox" id="image_term" name="image_term"  value="{{ $user->image_term }}" required>
-            <label for="image_term">Aceito termo de imagem</label>
-        </div>
-        <div>
-            <input type="checkbox" id="data_term" name="data_term"  value="{{ $user->data_term }}" required>
-            <label for="data_term">Aceito termo de dados</label>
-        </div>
+
+        
+        @foreach($user->permissions as $permission)        
+            @if ($permission->type === 'voluntary')
+
+                <div class="col-md-6">
+                    <label for="availability" class="form-label">Disponibilidade</label>
+                    <input type="text" class="form-control" id="availability" name="availability" value="{{ $user->availability }}" required readonly>
+                </div>
+                <div class="col-md-6">
+                    <label for="course_experience" class="form-label">Experiência</label>
+                    <input type="text" class="form-control" id="course_experience" name="course_experience" value="{{ $user->course_experience }}" required readonly> 
+                </div>
+                <div class="col-md-6">
+                    <label for="how_know" class="form-label">Como soube</label>
+                    <input type="text" class="form-control" id="how_know" name="how_know" required value="{{ $user->how_know }}" readonly>
+                </div>
+                <div class="col-md-6">
+                    <label for="expectations" class="form-label">Espectativas</label>
+                    <input type="text" class="form-control" id="expectations" name="expectations"  value="{{ $user->expectations}}"required readonly>
+                </div>
+            @endif
+        @endforeach
+
         <div class="col-12">
             <button type="submit" class="btn-form rounded">Salvar alterações</button>
         </div>

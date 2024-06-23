@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\Event;
-use App\Models\Inscription;
+use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Auth;
 
-class StudentController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-
+        //
     }
 
     /**
@@ -22,7 +22,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -30,15 +30,15 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        
+        //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Request $request)
+    public function show(string $id)
     {
-
+        //
     }
 
     /**
@@ -47,7 +47,7 @@ class StudentController extends Controller
     public function edit(string $id)
     {
         $user = User::with(['addresses', 'permissions'])->findOrFail($id);
-        return view('beneficiary.edit', ['user' => $user]);
+        return view('users.edit', ['user' => $user]);
     }
 
     /**
@@ -55,16 +55,22 @@ class StudentController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $user = User::with('addresses')->findOrFail($id);
-        $user->update($request->all());
-
-        $address = $user->addresses->first();
-        $address->update($request->all());
-        
-        $permission = $user->permissions->first();
-        $permission->update($request->all());
-
-        return response()->redirectTo('/beneficiary');
+        try{
+            $user = User::with('addresses')->findOrFail($id);
+            $user->update($request->all());
+    
+            $address = $user->addresses->first();
+            $address->update($request->all());
+    
+            $permission = $user->permissions->first();
+            $permission->update($request->all());
+    
+            return view('home.home', ['user' => Auth::user()]);
+        }catch(QueryException $e){
+            if ($e) {
+                return back()->withInput()->withErrors(['email' => 'O email fornecido já está em uso. Tente novamente!']);
+            }
+        }
     }
 
     /**
@@ -72,9 +78,6 @@ class StudentController extends Controller
      */
     public function destroy(string $id)
     {
-        $user = User::findOrFail($id);
-        $user->delete();
-        return response()->redirectTo('/beneficiary');
-    } 
-
+        //
+    }
 }

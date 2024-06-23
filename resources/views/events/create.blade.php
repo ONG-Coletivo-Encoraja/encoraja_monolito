@@ -33,8 +33,10 @@
         <div class="col-md-4">
             <label for="status" class="form-label">Status</label>
             <select id="status" name="status" class="form-select" required>
-                <option value="Active">Ativo</option>
-                <option value="Inactive">Inativo</option>
+                @can('viewAdmin', $user)
+                    <option value="Active">Ativo</option>
+                    <option value="Inactive">   </option>
+                @endcan
                 <option value="Pending" selected>Pendente</option>
             </select>
         </div>

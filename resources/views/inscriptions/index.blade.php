@@ -34,11 +34,20 @@
                 <td>{{$inscription->event->name}}</td>
                 <td>{{$inscription->status}}</td>
                 <td class="actions-form">
-                    <form action="/inscriptions/{{ $inscription->id }}/edit" method="GET">
-                        @csrf
-                        @method('GET')
-                        <button class="btn" type="submit">Editar</button>
-                    </form>
+                    @can('viewAdmin', $user)
+                        <form action="/inscriptions/{{ $inscription->id }}/edit" method="GET">
+                            @csrf
+                            @method('GET')
+                            <button class="btn" type="submit">Editar</button>
+                        </form>
+                    @endcan
+                    @can('viewBeneficiary', $user)
+                        <form action="/inscriptions/{{$inscription->id}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn" type="submit" onclick="confirmDelete()">Cancelar Inscrição</button>
+                        </form>
+                    @endcan
                 </td>
             </tr>
             @endforeach
