@@ -87,8 +87,8 @@ class AdministratorController extends Controller
             $user = User::with('addresses')->findOrFail($id);
             $user->update($request->all());
     
-            // $address = $user->addresses->first();
-            // $address->update($request->all());
+            $address = $user->addresses->first();
+            $address->update($request->all());
     
             $permission = $user->permissions->first();
             $permission->update($request->all());

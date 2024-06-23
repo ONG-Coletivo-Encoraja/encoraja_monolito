@@ -4,7 +4,7 @@
 @section('content')
 
 <div class="register-admin-form rounded">
-    <form class="row g-3" action="/adm/{{ $user->id }}" method="POST">
+    <form class="row g-3" action="/user/{{ $user->id }}" method="POST">
         @csrf
         @method('PUT')
         <div class="col-md-6">

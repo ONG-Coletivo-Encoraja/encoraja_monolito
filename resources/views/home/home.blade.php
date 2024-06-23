@@ -3,7 +3,7 @@
 @section('title', 'Encoraja')
 @section('content')
 
-<h1 class="tittle">Escolha um tipo de usuário</h1>
+<h1 class="tittle">Opções</h1>
 
 <div class="options-user">
     

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -53,7 +55,22 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        try{
+            $user = User::with('addresses')->findOrFail($id);
+            $user->update($request->all());
+    
+            $address = $user->addresses->first();
+            $address->update($request->all());
+    
+            $permission = $user->permissions->first();
+            $permission->update($request->all());
+    
+            return view('home.home', ['user' => Auth::user()]);
+        }catch(QueryException $e){
+            if ($e) {
+                return back()->withInput()->withErrors(['email' => 'O email fornecido já está em uso. Tente novamente!']);
+            }
+        }
     }
 
     /**
