@@ -76,7 +76,6 @@ class AdministratorController extends Controller
     public function edit(string $id)
     {
         $user = User::with(['addresses', 'permissions'])->findOrFail($id);
-
         return view('administrator.edit', ['user' => $user]);
     }
     /**

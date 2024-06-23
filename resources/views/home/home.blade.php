@@ -12,7 +12,8 @@
 
         <div class="options-home-admin">
             {{-- <a href="/beneficiary/create" class="option-home-admin rounded">Se cadastre aqui</a> --}}
-        
+            <a href="/user/{{$user->id}}/edit" class="option-home-admin rounded">Editar cadastro</a>
+
             <a href="/events" class="option-home-admin rounded">Opções de Eventos</a>
         
             <a href="/inscriptions" class="option-home-admin rounded">Minhas inscrições</a>
@@ -24,7 +25,8 @@
 
         <div class="options-home-admin">
             {{-- <a href="/voluntary/create" class="option-home-admin rounded">Efetuar cadastro</a> --}}
-        
+            <a href="/user/{{$user->id}}/edit" class="option-home-admin rounded">Editar cadastro</a>
+
             <a href="/events" class="option-home-admin rounded">Opções de Eventos</a>
         
             <a href="/events/create" class="option-home-admin rounded">Sugerir Eventos</a>
@@ -45,6 +47,8 @@
                 <a href="/beneficiary/create" class="detail-option">Cadastrar beneficiario</a><br>
             </details> --}}
         
+            <a href="/user/{{$user->id}}/edit" class="option-home-admin rounded">Editar cadastro</a>
+
             <a href="/adm" class="option-home-admin rounded">Visualisar todos os usuários</a>
         
             <a href="/events" class="option-home-admin rounded">Opções de Eventos</a>
