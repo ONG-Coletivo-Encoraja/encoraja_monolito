@@ -56,20 +56,12 @@ class InscriptionController extends Controller
      */
     public function store(Request $request)
     {
-        $event_id = $request->input('event_id');
-        $user_id = $request->input('user_id');
-
-        // Verifique se o usuário existe
-        $user = User::find($user_id);
-
-        if (!$user) {
-            // Se o usuário não existe, retorne uma mensagem de erro
-            return redirect()->back()->with('error', 'Usuário não encontrado.');
-        }
+        $eventId = $request->input('eventId');
+        $user = User::find(Auth::id());
 
         // Verifique se o usuário já possui uma inscrição para este evento
-        $existingInscription = Inscription::where('event_id', $event_id)
-            ->where('user_id', $user_id)
+        $existingInscription = Inscription::where('event_id', $eventId)
+            ->where('user_id', $user->id)
             ->first();
 
         if ($existingInscription) {
@@ -81,12 +73,12 @@ class InscriptionController extends Controller
         $inscription = Inscription::create([
             'proof' => 'lalal',
             'status' => 'pending',
-            'event_id' => $event_id,
-            'user_id' => $user_id
+            'event_id' => $eventId,
+            'user_id' => $user->id
         ]);
 
         // Redirecione para onde quiser após a criação bem-sucedida da inscrição
-        return redirect('/beneficiary');
+        return redirect('/inscriptions');
     }
 
     public function beneficiary_inscriptions()
@@ -135,6 +127,6 @@ class InscriptionController extends Controller
 
         $inscription->delete();
 
-        return redirect('/inscriptions')->with('success', 'Inscription deleted successfully');
+        return redirect('/inscriptions');
     }
 }

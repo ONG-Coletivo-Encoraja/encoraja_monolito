@@ -42,8 +42,9 @@
                         </form>
                     @endcan
                     @can('viewBeneficiary', $user)
-                        <form action="/beneficiary/cancel/{{ $inscription->id }}" method="GET">
+                        <form action="/inscriptions/{{$inscription->id}}" method="POST">
                             @csrf
+                            @method('DELETE')
                             <button class="btn" type="submit" onclick="confirmDelete()">Cancelar Inscrição</button>
                         </form>
                     @endcan

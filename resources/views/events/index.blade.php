@@ -77,10 +77,11 @@
                         @endif
 
                         @can('viewBeneficiary', $user)
-                            <form action="/beneficiary/create/{{ $event->id }}" method="GET">
+                            <form action="/inscriptions" method="POST">
                                 @csrf
-                                @method('GET')
-                                <button class="btn" type="submit">Se Inscrever</button>
+                                @method('POST')
+                                <input type="hidden" value="{{$event -> id}}" name="eventId" id="eventId">
+                                <button class="btn" type="submit" onclick="return confirmInscription()">Se Inscrever</button>
                             </form> 
                         @endcan
                     </td>
