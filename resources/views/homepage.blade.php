@@ -17,19 +17,19 @@
             <section>
                 <x-content/>
             </section>
-            <section class="about-us">
+            <section class="about-us" id="about-us">
                 <x-about-us-item/>
             </section>
             <section class="about-admin">
                 <x-about-admin-item/>
             </section>
-            <section>
+            <section id="events">
                 <x-events/>
             </section> 
-            <section>
+            <section id="partners">
                 <x-partners/>
             </section>   
-            <section>
+            <section id="contact">
                 <x-contact/>
             </section> 
             <footer>

@@ -2,14 +2,14 @@
     <a class="navbar-logo" href="/">
         <img src="/img/encoraja.jpg" alt="Logo">
     </a>
-    <div class="" id="">
-        <ul class="navbar-links">
-            <li class="nav-item"><a class="nav-link" href="">Sobre Nós</a></li>
-            <li class="nav-item"><a class="nav-link" href="">Eventos</a></li>
-            <li class="nav-item"><a class="nav-link" href="">Apoiadores & Parceiros</a></li>
-            <li class="nav-item"><a class="nav-link" href="">Transparência</a></li>
-            <li class="nav-item"><a class="nav-link" href="">Contato</a></li>
-        </ul>
+  <div class="" id="">
+    <ul class="navbar-links">
+        <li class="nav-item"><a class="nav-link" href="#about-us">Sobre Nós</a></li>
+        <li class="nav-item"><a class="nav-link" href="#events">Eventos</a></li>
+        <li class="nav-item"><a class="nav-link" href="#partners">Apoiadores & Parceiros</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Transparência</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contato</a></li>
+    </ul>
     <ul class="navbar-midias">
       <li class="nav-item">
         <a class="nav-link" href="https://www.facebook.com/yourfacebookpage" target="_blank">
