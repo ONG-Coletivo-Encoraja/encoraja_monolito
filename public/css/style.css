@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-
 body {
+    margin: 0;
+    padding: 0;
     background-color: #bf9f88;
     font-family: "Poppins", sans-serif;
 }
@@ -119,5 +120,221 @@ nav header{
     margin-bottom: 100px;
     color: #702055;
     font-size: 20px;
+    text-align: center;
+}
+
+.navbar {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 80px; 
+    background-color: #C16D63;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar ul {
+    list-style-type: none;
+}
+
+.navbar li {
+    float: left;
+}
+
+.navbar li a {
+    color: white;
+    padding: 10px 16px;
+    text-decoration: none;
+    font-family: 'Courier New', Courier, monospace;
+  }
+
+.navbar a img {
+    width: 60px;
+    height: 60px;
+    margin-left: 10px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid white;
+    vertical-align: middle;
+
+}
+
+.auth-button {
+    position: relative;
+    background-color: #702055;
+    border-radius: 10%;
+    font-size: 10px;
+    color: #FFFFFF;
+    padding: 20px;
+    width: 200px;
+    margin-right: 12px;
+    text-align: center;
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.content {
+    background-color: #702055;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 600px;
+    padding-top: 300px;
+    text-align: center;
+    color: white;
+}
+
+.about-us {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding-top: 50px;
+    background-color: #FFFFFF;
+}
+
+.about-us-item {
+    padding: 20px;
+    font-size: 25px;
+    text-align: center;
+}
+
+.about-us-item img {
+    width: 400px;
+    height: 300px;
+}
+
+.about-admin {
+    display: grid;
+    grid-template-columns: auto auto;
+    height: 500px;
+}
+
+#about-admin-img {
+    background-color: #F5F2D0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#about-admin{
+    background-color: #702055;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding: 20px;
+}
+
+.about-admin-item img {
+    max-width: 300px; /* Garante que a imagem não ultrapasse o tamanho do container */
+    height: auto; /* Altura automática para manter a proporção */
+    display: block; /* Remove espaços extras em volta da imagem */
+    margin: 0 auto;
+}
+
+.text-events {
+    background-color: white;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 250px;
+    padding-top: 80px;
+    text-align: center;
+    color: black;
+    font-size: larger;
+
+}
+
+.events {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    background-color: #FFFFFF;
+}
+
+.events img {
+    width: 400px;
+    height: auto;
+}
+
+.events-item {
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+}
+
+.partners {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto;
+    background-color: #FFFFFF;
+    height: 600px;
+}
+
+.partners-item img {
+    width: 100px;
+    height: auto;
+}
+
+.partners-item {
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+}
+
+.text-partners {
+    background-color: white;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 250px;
+    padding-top: 80px;
+    text-align: center;
+    color: black;
+    font-size: larger;
+}
+
+.text-partners ul {
+    display: grid;
+    grid-template-columns: auto auto;
+
+}
+
+.text-partners ul li {
+
+    position: relative;
+    background-color: #702055;
+    font-size: 10px;
+    color: #FFFFFF;
+    padding: 20px;
+    width: 200px;
+    margin-right: 12px;
+    text-align: center;
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+
+}
+
+.contacts {
+    background-color: #F5F2D0;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 600px;
+    padding-top: 80px;
+    text-align: center;
+    color: black;
+    font-size: larger;
+}
+
+footer {
+
     text-align: center;
 }
