@@ -35,7 +35,7 @@
             <select id="status" name="status" class="form-select" required>
                 @can('viewAdmin', $user)
                     <option value="Active">Ativo</option>
-                    <option value="Inactive">   </option>
+                    <option value="Inactive">Inativo</option>
                 @endcan
                 <option value="Pending" selected>Pendente</option>
             </select>
