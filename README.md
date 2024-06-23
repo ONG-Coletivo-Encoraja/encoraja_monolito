@@ -14,6 +14,7 @@ https://youtu.be/VT9lt2pstcE
 - ```Laravel```: framework php.
 - ```Composer```: para o gerenciamento de dependências.
 - ```MySQL```: para o armazenamento das informações.
+- ```Alpine Js```: para a autenticação e estilização com breeze.
 
 # Rodando o projeto
 - ```composer update```: para instalação das dependências.
