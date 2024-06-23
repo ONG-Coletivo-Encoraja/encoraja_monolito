@@ -9,23 +9,26 @@ use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+
+    public function index(Request $request)
     {
-        // $search = request('search');
         $user = User::find(Auth::id());
 
-        $event = new Event;
-        // $events = $event->search_event_by_name($search);
-        $events = Event::All();
-        
-        if ($user->permissions()->first()->type == 'beneficiary') {
-            $events = Event::where('status', '=', 'Active')->get();
+        $search = $request->input('search');
+
+        $eventsQuery = Event::query();
+
+        if (!empty($search)) {
+            $eventsQuery->where('name', 'like', '%' . $search . '%');
         }
 
-        return view('events.index', ['events' => $events, 'user' => $user]);
+        if ($user->permissions()->first()->type == 'beneficiary') {
+            $eventsQuery->where('status', '=', 'Active');
+        }
+        
+        $events = $eventsQuery->get();
+
+        return view('events.index', ['events' => $events, 'user' => $user, 'search' => $search]);
     }
 
     /**

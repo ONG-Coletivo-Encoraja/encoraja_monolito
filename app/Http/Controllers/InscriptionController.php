@@ -18,30 +18,29 @@ class InscriptionController extends Controller
     /**
      * Display a listing of the resource.
      */
-    //teve alterações
-    public function index()
+    public function index(Request $request)
     {
         $user = User::find(Auth::id());
 
-        if ($user->permissions()->first()->type == 'beneficiary') {
-            $inscriptions = $this->beneficiary_inscriptions();
-        } else {
-            $inscriptions = Inscription::All();
+        $search = $request->input('search');
+
+        $inscriptionsQuery = Inscription::query();
+
+        if (!empty($search)) {
+            $inscriptionsQuery->whereHas('event', function ($query) use ($search) {
+                $query->where('name', 'like', '%' . $search . '%');
+            });
         }
 
-        // $search = request('search');
+        if ($user->permissions()->first()->type == 'beneficiary') {
+            $inscriptionsQuery->where('user_id', $user->id);
+        }
 
-        // if ($search) {
-        //     $inscriptions->whereHas('user', function ($query) use ($search) {
-        //         $query->where('name', 'like', '%' . $search . '%');
-        //     })->orWhereHas('event', function ($query) use ($search) {
-        //         $query->where('name', 'like', '%' . $search . '%');
-        //     });
-        // }
-        
-        return view('inscriptions.index', ['inscriptions' => $inscriptions, 'user' => $user]);
+        $inscriptions = $inscriptionsQuery->with('event')->get();
+
+        return view('inscriptions.index', ['inscriptions' => $inscriptions, 'user' => $user, 'search' => $search]);
     }
-    
+
     /**
      * Show the form for creating a new resource.
      */
@@ -115,14 +114,5 @@ class InscriptionController extends Controller
         return redirect('/inscriptions');
     }
 
-    public function beneficiary_inscriptions()
-    {
-        $user = Auth::id();
-        
-        $inscriptions = Inscription::with('user', 'event')->where([
-            ['user_id','like', '%'.$user.'%']
-        ])->get();
-
-        return $inscriptions;
-    }
+    
 }
