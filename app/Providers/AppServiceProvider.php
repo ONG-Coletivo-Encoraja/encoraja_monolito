@@ -33,7 +33,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        ServiceProvider::registerPolicies();
+        ServiceProvider::registerPolicies();     
         // $this->registerPolicies();
     }
 }
