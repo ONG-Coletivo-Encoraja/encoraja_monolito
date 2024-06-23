@@ -38,7 +38,7 @@
                     </select>
                 @endcan
                 @cannot('viewAdmin', $user)
-                    <input type="text" class="form-control" id="type" name="type" value="{{ old('name', $user->type) }}" required readonly>
+                    <input type="text" class="form-control" id="type" name="type" value="{{ old('name', $permission->type) }}" required readonly>
                 @endcannot
             </div>
         @endforeach
