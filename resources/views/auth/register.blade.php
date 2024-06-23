@@ -19,7 +19,7 @@
         <div class="mt-4">
             <x-input-label for="date_birthday" :value="__('Data de nascimento')" />
             <x-text-input id="date_birthday" class="block mt-1 w-full" type="date" name="date_birthday" :value="old('date_birthday')" autofocus autocomplete="date_birthday" />
-            <x-input-error :messages="$errors->get('date_birthday')" class="mt-2" />
+            
         </div>
 
         <!-- Email Address -->

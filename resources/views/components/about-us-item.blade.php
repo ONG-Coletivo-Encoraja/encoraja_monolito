@@ -22,8 +22,3 @@
     <p>Valores<p>
     <img src="/img/item.png" alt="generic-item">
 </div>
-
-
-
-
-
