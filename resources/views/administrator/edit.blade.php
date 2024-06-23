@@ -60,22 +60,28 @@
             </div>
         @endforeach
 
-        <div class="col-md-6">
-            <label for="availability" class="form-label">Disponibilidade</label>
-            <input type="text" class="form-control" id="availability" name="availability" value="{{ $user->availability }}" required readonly>
-        </div>
-        <div class="col-md-6">
-            <label for="course_experience" class="form-label">Experiência</label>
-            <input type="text" class="form-control" id="course_experience" name="course_experience" value="{{ $user->course_experience }}" required readonly> 
-        </div>
-        <div class="col-md-6">
-            <label for="how_know" class="form-label">Como soube</label>
-            <input type="text" class="form-control" id="how_know" name="how_know" required value="{{ $user->how_know }}" readonly>
-        </div>
-        <div class="col-md-6">
-            <label for="expectations" class="form-label">Espectativas</label>
-            <input type="text" class="form-control" id="expectations" name="expectations"  value="{{ $user->expectations}}"required readonly>
-        </div>
+        
+        @foreach($user->permissions as $permission)        
+            @if ($permission->type === 'voluntary')
+
+                <div class="col-md-6">
+                    <label for="availability" class="form-label">Disponibilidade</label>
+                    <input type="text" class="form-control" id="availability" name="availability" value="{{ $user->availability }}" required readonly>
+                </div>
+                <div class="col-md-6">
+                    <label for="course_experience" class="form-label">Experiência</label>
+                    <input type="text" class="form-control" id="course_experience" name="course_experience" value="{{ $user->course_experience }}" required readonly> 
+                </div>
+                <div class="col-md-6">
+                    <label for="how_know" class="form-label">Como soube</label>
+                    <input type="text" class="form-control" id="how_know" name="how_know" required value="{{ $user->how_know }}" readonly>
+                </div>
+                <div class="col-md-6">
+                    <label for="expectations" class="form-label">Espectativas</label>
+                    <input type="text" class="form-control" id="expectations" name="expectations"  value="{{ $user->expectations}}"required readonly>
+                </div>
+            @endif
+        @endforeach
 
         <div class="col-12">
             <button type="submit" class="btn-form rounded">Salvar alterações</button>
