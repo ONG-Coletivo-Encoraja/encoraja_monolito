@@ -61,11 +61,11 @@ class UserController extends Controller
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255'],
             'cpf' => ['required', 'string', 'max:14', 'min:14'],
             'date_birthday' => ['required', new ValidAge],
-            'street' => ['required', 'string'],
-            'number' => ['required', 'numeric'],
-            'neighbourhood' => ['required', 'string'],
-            'city' => ['required', 'string'],
-            'zip_code' => ['required', 'string', 'max:9', 'min:9'],
+            'street' => [ 'string'],
+            'number' => [ 'numeric'],
+            'neighbourhood' => ['string'],
+            'city' => [ 'string'],
+            'zip_code' => ['string', 'max:9', 'min:9'],
             'availability' => ['string'],
             'course_experience' => ['string'],
             'how_know' => ['string'],
@@ -110,9 +110,10 @@ class UserController extends Controller
         
             $user = User::with('addresses')->findOrFail($id);
             $user->update($request->all());
-    
+
             $address = $user->addresses->first();
             $address->update($request->all());
+
     
             $permission = $user->permissions->first();
             $permission->update($request->all());
