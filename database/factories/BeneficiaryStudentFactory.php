@@ -10,10 +10,9 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\BeneficiaryStudent>
  */
-class BeneficiaryFactory extends Factory
+class BeneficiaryStudentFactory extends Factory
 {
     protected $model = BeneficiaryStudent::class;
-
     /**
      * Define the model's default state.
      *

@@ -3,24 +3,17 @@
 namespace Tests\Unit;
 
 use App\Models\BeneficiaryStudent;
-use Database\Factories\BeneficiaryFactory;
+use Database\Factories\BeneficiaryStudentFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\TestCase;
 
-class BeneficiaryTest extends TestCase
+class BeneficiaryStudentTest extends TestCase
 {
-    /**
-     * A basic unit test example.
-     */
-    // public function test_example(): void
-    // {
-    //     $this->assertTrue(true);
-    // }
 
     public function test_creates_a_new_beneficiary()
     {
         // Arrange
-        $beneficiaryAttributes = BeneficiaryFactory::new()->make()->toArray();
+        $beneficiaryAttributes = BeneficiaryStudentFactory::new()->make()->toArray();
         
         // Act
         $beneficiary = BeneficiaryStudent::factory()-> create($beneficiaryAttributes);
