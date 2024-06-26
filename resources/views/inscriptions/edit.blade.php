@@ -33,7 +33,7 @@
         </div>
 
         <div class="col-12">
-            <button type="submit" class="btn-form rounded">Salvar alterações</button>
+            <input type="submit" class="btn-form rounded" value="Salvar alterações">
         </div>
     </form>
 </div>

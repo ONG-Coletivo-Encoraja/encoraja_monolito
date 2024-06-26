@@ -9,9 +9,8 @@ class Permission extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'type'
-    ];
+    protected $fillable = ['type', 'user_id'];
+
 
     public function user(){
         return $this->belongsTo(User::class);
