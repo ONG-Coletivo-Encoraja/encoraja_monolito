@@ -23,6 +23,7 @@ https://youtu.be/VT9lt2pstcE
 - ```npm run dev```: para o Brezze com Alpine.
 - ```php artisan serve```: para o servidor PHP.
 
+#Equipe
 ![Andre](https://media.licdn.com/dms/image/D4D03AQGjkE_TgqbwKQ/profile-displayphoto-shrink_200_200/0/1718147518615?e=1724889600&v=beta&t=dCYM0msqZWamQgfJAzBAYYFhhYgRl8zxERn10DlclqY)
 ![Juliana](https://media.licdn.com/dms/image/D4D03AQHr7w0DU_lM6A/profile-displayphoto-shrink_200_200/0/1710427543029?e=1724889600&v=beta&t=-ikLLjJ1mI2aTjpnJ_AMIrOtaeidvhuCuB5RopXbFLo)
 ![Maria](https://media.licdn.com/dms/image/D4E03AQHYW0e702e5IQ/profile-displayphoto-shrink_200_200/0/1711017086059?e=1724889600&v=beta&t=fKGDdxVltlIu3ENXcmUg7Zg9b1NxvO0dICFFuYeImPQ)
