@@ -22,3 +22,5 @@ https://youtu.be/VT9lt2pstcE
 - ```php artisan migrate```: para criar as tabelas.
 - ```npm run dev```: para o Brezze com Alpine.
 - ```php artisan serve```: para o servidor PHP.
+
+![Maria](https://media.licdn.com/dms/image/D4E03AQHYW0e702e5IQ/profile-displayphoto-shrink_200_200/0/1711017086059?e=1724889600&v=beta&t=fKGDdxVltlIu3ENXcmUg7Zg9b1NxvO0dICFFuYeImPQ)
