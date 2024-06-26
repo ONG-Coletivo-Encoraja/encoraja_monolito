@@ -1,4 +1,6 @@
-# Site WEB Encoraja
+<img src="/public/img/encoraja.jpg" alt="Logo-encoraja" style="border-radius: 50%; width: 100px; display: inline-block;">
+
+# Site WEB Encoraja 
 
 Esse repositório contém o desenvolvimento do Projeto Integrador do Tecnólogo em Análise e Desenvolvimento de Sistemas, para o centro universitário Cesumar.
 
