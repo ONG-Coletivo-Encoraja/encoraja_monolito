@@ -2,7 +2,9 @@
 
 # Site WEB Encoraja 
 
-Esse repositório contém o desenvolvimento do Projeto Integrador do Tecnólogo em Análise e Desenvolvimento de Sistemas, para o centro universitário Cesumar.
+Esse repositório contém o desenvolvimento do Projeto Integrador do Tecnólogo em Análise e Desenvolvimento de Sistemas, para o centro universitário Cesumar. 
+
+A Organização não Governamental (ONG) **Coletivo Encoraja** apoia mulheres em situação de vulnerabilidade. Atualmente, a divulgação das suas atividades é feita somente através de redes sociais e o cadastro no Google Forms. Este projeto visa aprimorar o marketing do Coletivo Encoraja e desenvolver uma aplicação web para centralizar informações e serviços. A plataforma facilitará cadastros, elaboração de relatórios e gerenciamento de eventos e projetos. O objetivo é criar uma ferramenta digital integrada que amplie o alcance e o impacto da ONG, ajudando mais mulheres a obter apoio e segurança.
 
 ## Link para a apresentação do projeto
 
