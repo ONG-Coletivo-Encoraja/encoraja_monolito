@@ -1,14 +1,12 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Unit;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
 use App\Models\Inscription;
-use App\Models\User;
-use App\Models\Event;
 use Database\Factories\InscriptionFactory;
+use PHPUnit\Framework\TestCase;
 
 class InscriptionTest extends TestCase
 {

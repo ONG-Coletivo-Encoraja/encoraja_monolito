@@ -13,18 +13,21 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
         <script defer src="/js/app.js"></script>
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
         <link rel="stylesheet" href="/css/style.css">
     </head>
 
     <body>
         <header>
-            <nav class="navbar shadow p-2 mb-5 bg-body">
+            {{-- <nav class="navbar shadow p-2 mb-5 bg-body">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="/">
                     <img src="/img/encoraja-logo-nav.png" alt="Logo" width="150px" height="auto" class="d-inline-block align-text-top">
                     </a>
+                    
                 </div>
-            </nav>
+            </nav> --}}
+            @include('layouts.navigation')
         </header>
         <main>
             @yield('content')

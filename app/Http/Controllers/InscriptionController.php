@@ -9,31 +9,38 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\User;
 use App\Models\Event;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\QueryException;
+
 
 class InscriptionController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    //teve alterações
-    public function index()
+    public function index(Request $request)
     {
-        $search = request('search');
+        $user = User::find(Auth::id());
 
-        $inscriptions = Inscription::with(['user','event']);
+        $search = $request->input('search');
 
-        if ($search) {
-            $inscriptions->whereHas('user', function ($query) use ($search) {
-                $query->where('name', 'like', '%' . $search . '%');
-            })->orWhereHas('event', function ($query) use ($search) {
+        $inscriptionsQuery = Inscription::query();
+
+        if (!empty($search)) {
+            $inscriptionsQuery->whereHas('event', function ($query) use ($search) {
                 $query->where('name', 'like', '%' . $search . '%');
             });
         }
-        $inscriptions = $inscriptions->get();
-        
-        return view('inscriptions.index', ['inscriptions' => $inscriptions]);
+
+        if ($user->permissions()->first()->type == 'beneficiary') {
+            $inscriptionsQuery->where('user_id', $user->id);
+        }
+
+        $inscriptions = $inscriptionsQuery->with('event')->get();
+
+        return view('inscriptions.index', ['inscriptions' => $inscriptions, 'user' => $user, 'search' => $search]);
     }
-    
+
     /**
      * Show the form for creating a new resource.
      */
@@ -48,73 +55,34 @@ class InscriptionController extends Controller
      */
     public function store(Request $request)
     {
-    //     $event_id = $request->input('event_id');
-    //     $user_id = $request->input('user_id');
+        $eventId = $request->input('eventId');
+        $user = User::find(Auth::id());
 
-    //     $inscription = Inscription::create([
-    //         'proof' => 'lalal',
-    //         'status' => 'pending',
-    //         'event_id' => ($event_id),
-    //         'user_id' => ($user_id)
-    //     ]);
-
-    //     return redirect('/beneficiary');
-
-        $event_id = $request->input('event_id');
-        $user_id = $request->input('user_id');
-
-        // Verifique se o usuário existe
-        $user = User::find($user_id);
-
-        if (!$user) {
-            // Se o usuário não existe, retorne uma mensagem de erro
-            return redirect()->back()->with('error', 'Usuário não encontrado.');
-        }
-
-        // Verifique se o usuário já possui uma inscrição para este evento
-        $existingInscription = Inscription::where('event_id', $event_id)
-            ->where('user_id', $user_id)
+        $existingInscription = Inscription::where('event_id', $eventId)
+            ->where('user_id', $user->id)
             ->first();
 
         if ($existingInscription) {
-            // Se o usuário já estiver inscrito neste evento, retorne uma mensagem de erro
             return redirect()->back()->with('error', 'Este usuário já está inscrito neste evento.');
         }
 
-        // Caso contrário, crie a nova inscrição
         $inscription = Inscription::create([
             'proof' => 'lalal',
             'status' => 'pending',
-            'event_id' => $event_id,
-            'user_id' => $user_id
+            'event_id' => $eventId,
+            'user_id' => $user->id
         ]);
 
-        // Redirecione para onde quiser após a criação bem-sucedida da inscrição
-        return redirect('/beneficiary');
-
-    }
-
-    public function show_user_inscriptions()
-    {
-        $search = request('search');
-        
-        if($search){
-            $inscriptions = Inscription::with('user', 'event')->where([
-                ['user_id','like', '%'.$search.'%']
-            ])->get();
-        }else{
-            $inscriptions = [];
-        }
-
-        return view('beneficiary.inscriptions', ['inscriptions' => $inscriptions]);
+        return redirect('/inscriptions');
     }
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
+        $user = Auth::user();
         $inscription = Inscription::with(['user','event'])->findOrFail($id);
-        return view('inscriptions.edit', ['inscription' => $inscription]);
+        return view('inscriptions.edit', ['inscription' => $inscription, 'user' => $user]);
     }
 
     /**
@@ -122,10 +90,16 @@ class InscriptionController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $inscription = Inscription::findOrFail($id);
-        $inscription->update($request->all());
+        try {
+            $inscription = Inscription::findOrFail($id);
+            $inscription->update($request->all());
 
-        return response()->redirectTo('/inscriptions');
+            return response()->redirectTo('/inscriptions');
+        } catch (QueryException $e) {
+            if ($e) {
+                return back()->withInput()->withErrors(['email' => 'O email fornecido já está em uso. Tente novamente!']);
+            }
+        }
     }
 
     /**
@@ -137,6 +111,8 @@ class InscriptionController extends Controller
 
         $inscription->delete();
 
-        return redirect('/inscriptions')->with('success', 'Inscription deleted successfully');
+        return redirect('/inscriptions');
     }
+
+    
 }

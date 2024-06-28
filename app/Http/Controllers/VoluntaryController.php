@@ -4,16 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use App\Models\User;
-use App\Models\Inscription;
 use Illuminate\Http\Request;
 
 
 class VoluntaryController extends Controller
-{
-    public function home()
-    {
-        return view('voluntary.home');
-    }   
+{ 
     public function index()
     {
         $users = User::with('permissions')->get();
@@ -26,45 +21,10 @@ class VoluntaryController extends Controller
         return view('voluntary.create');
     }
 
-    public function formEvent()
-    {
-        return view('voluntary.formEvent');
-    }
-    public function eventsCreate(Request $request)
-    {
-        if(Event::query()->create($request->all())) {
-            return response()->redirectTo('/voluntary/events');
-        }
-    }
-
-
-    public function selectEvents()
-    {
-
-        $search = request('search');
-
-        $event = new Event;
-        $events = $event->search_event_by_name($search);
-
-        return view('voluntary.events', ['events' => $events, 'search' => $search]);
-    }
-    public function viewInscriptions()
-    {
-        $search = request('search');
-        
-        if($search){
-            $inscriptions = Inscription::with('user', 'event')->where([
-                ['user_id','like', '%'.$search.'%']
-            ])->get();
-        }else{
-            $inscriptions = Inscription::with('user', 'event')->get();
-        }
-        return view('voluntary.inscriptions', ['inscriptions' => $inscriptions]);
-    }
-
+    
     public function store(Request $request)
     {
-
+        
         $voluntary = User::create([
             'name' => $request->input('name'),
             'email' =>  $request->input('email'),
@@ -84,7 +44,7 @@ class VoluntaryController extends Controller
             'city' => $request->input('city'),
             'zip_code' => $request->input('zip_code')
         ]);
-
+        
         $voluntary->permissions()->create([
             'type' => 'voluntary'
         ]);
@@ -96,7 +56,6 @@ class VoluntaryController extends Controller
     public function edit(string $id)
     {
         $user = User::with(['addresses'])->findOrFail($id);
-        // dd($user);
         return view('voluntary.edit', ['user' => $user]);
     }
 
@@ -104,7 +63,7 @@ class VoluntaryController extends Controller
     {
         $user = User::with('addresses')->findOrFail($id);
         $user->update($request->all());
-
+        
         $address = $user->addresses->first();
         $address->update($request->all());
 
@@ -121,5 +80,38 @@ class VoluntaryController extends Controller
         return response()->redirectTo('/voluntary');
         
     }
+    public function selectEvents()
+    {
+        
+        $search = request('search');
 
+        $event = new Event;
+        $events = $event->search_event_by_name($search);
+
+        return view('voluntary.events', ['events' => $events, 'search' => $search]);
+    }
+    // public function viewInscriptions()
+    // {
+        //     $search = request('search');
+        
+    //     if($search){
+    //         $inscriptions = Inscription::with('user', 'event')->where([
+    //             ['user_id','like', '%'.$search.'%']
+    //         ])->get();
+    //     }else{
+    //         $inscriptions = Inscription::with('user', 'event')->get();
+    //     }
+    //     return view('voluntary.inscriptions', ['inscriptions' => $inscriptions]);
+    // }
+
+    // public function formEvent()
+    // {
+    //     return view('voluntary.formEvent');
+    // }
+    // public function eventsCreate(Request $request)
+    // {
+        //     if(Event::query()->create($request->all())) {
+    //         return response()->redirectTo('/voluntary/events');
+    //     }
+    // }
 }
