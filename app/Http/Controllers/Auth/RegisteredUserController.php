@@ -96,6 +96,10 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        $user->permissions()->create([
+            'type' => 'beneficiary'
+        ]);
+
         $user->addresses()->create([
             'street' => $request->street,
             'number' => $request->number,
