@@ -8,8 +8,13 @@ A Organização não Governamental (ONG) **Coletivo Encoraja** apoia mulheres em
 
 ## Link para a apresentação do projeto
 
+- 1º Bimestre:
 ```
 https://youtu.be/VT9lt2pstcE
+```
+- 2º Bimestre:
+```
+https://www.youtube.com/watch?v=tjX-8MkdLmc
 ```
 
 ## Tecnologias
